@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cliente"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="BlackJack" Height="768" Width="1200" Icon="/Icon.png" ResizeMode="NoResize" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Window.Background>
+        <ImageBrush ImageSource="/Fond.jpg"/>
+    </Window.Background>
+    <Frame Content="" Source="/Pages/Inicio.xaml" Margin="1,1,1,1" NavigationUIVisibility="Hidden"/>
 </Window>

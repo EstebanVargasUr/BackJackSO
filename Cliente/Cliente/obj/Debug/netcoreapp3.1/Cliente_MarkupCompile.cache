@@ -1,5 +1,5 @@
 ﻿Cliente
-1.0.0.0
+
 
 winexe
 C#
@@ -12,7 +12,7 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\App.xaml
 3-1619159746
 
-8266947493
+6386935377
 192-1533232326
 MainWindow.xaml;Pages\Inicio.xaml;Pages\Verificacion.xaml;
 

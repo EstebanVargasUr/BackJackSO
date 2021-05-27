@@ -23,6 +23,28 @@ namespace Cliente
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //connect.Visibility = Visibility.Hidden;
+            
+        }
+
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+
         }
     }
 }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\Cliente\\Cliente\\Cliente.csproj",
+      "projectUniqueName": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
       "projectName": "Cliente",
-      "projectPath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\Cliente\\Cliente\\Cliente.csproj",
+      "projectPath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
       "packagesPath": "C:\\Users\\Pipo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\Cliente\\Cliente\\obj\\",
+      "outputPath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Pipo\\AppData\\Roaming\\NuGet\\NuGet.Config",

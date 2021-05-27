@@ -6,4 +6,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Fond.jpg" />
+    <None Remove="Icon.png" />
+    <None Remove="Pages\Fond.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fond.jpg" />
+    <Resource Include="Icon.png" />
+    <Resource Include="Pages\Fond.jpg" />
+  </ItemGroup>
+
 </Project>
