@@ -7,14 +7,7 @@ using System.Text;
 
 namespace Controlador
 {
-    class Transferencia
-    {
-        public Object[] datos;
-        public Transferencia(Object[] a)
-        {
-            datos = a;
-        }
-    }
+    
     class Program
     {
         private static readonly Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -22,6 +15,9 @@ namespace Controlador
         private const int BUFFER_SIZE = 2048;
         private const int PORT = 100;
         private static readonly byte[] buffer = new byte[BUFFER_SIZE];
+        private static Jugadores jugadores = new Jugadores();
+        private static Juego juego = new Juego();
+        private static List<Jugadores> ListJugadores = new List<Jugadores>();
 
         static void Main()
         {
@@ -37,7 +33,8 @@ namespace Controlador
             serverSocket.Bind(new IPEndPoint(IPAddress.Any, PORT));
             serverSocket.Listen(0);
             serverSocket.BeginAccept(AcceptCallback, null);
-            Console.WriteLine("Server setup complete");
+            Console.WriteLine("Server running...");
+            juego.CrearCartas();
         }
 
         /// <summary>
@@ -79,7 +76,17 @@ namespace Controlador
                 return;
             }
 
+            /*if(clientSockets.Count < 7)
+            {
+                clientSockets.Add(socket);
+            }
+            */
+
+            Jugadores jug = new Jugadores();
+            ListJugadores.Add(jug);
+
             clientSockets.Add(socket);
+            
             socket.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, socket);
             Console.WriteLine("Client connected, waiting for request...");
             serverSocket.BeginAccept(AcceptCallback, null);
@@ -117,7 +124,43 @@ namespace Controlador
                 byte[] data = Encoding.ASCII.GetBytes(DateTime.Now.ToLongTimeString());
                 current.Send(data);
                 Console.WriteLine("Time sent to client");
+
             }
+
+            else if (deserialized.datos[0].ToString() == "pedir cartas inicial")
+            {
+                jugadores.cartas.Add(juego.cartas[0]);
+                juego.cartas.RemoveAt(0);
+                jugadores.cartas.Add(juego.cartas[0]);
+                juego.cartas.RemoveAt(0);
+            }
+
+            else if (deserialized.datos[0].ToString() == "pedir carta")
+            {
+                jugadores.cartas.Add(juego.cartas[0]);
+                juego.cartas.RemoveAt(0);
+            }
+
+            else if (deserialized.datos[0].ToString() == "quedarse")
+            {
+                /*EN PROCESO*/
+            }
+
+            else if (deserialized.datos[0].ToString() == "apuesta")
+            {
+                /*EN PROCESO*/
+            }
+
+            else if (deserialized.datos[0].ToString() == "registrarse")
+            {
+                /*EN PROCESO*/
+            }
+
+            else if (deserialized.datos[0].ToString() == "login")
+            {
+                /*EN PROCESO*/
+            }
+
             else if (text.ToLower() == "exit") // Client wants to exit gracefully
             {
                 // Always Shutdown before closing

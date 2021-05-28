@@ -8,3 +8,13 @@ C:\Users\Esteban-Vargas\Desktop\Tercer Año\Ciclo l\Sistemas operativos\TareaPro
 C:\Users\Esteban-Vargas\Desktop\Tercer Año\Ciclo l\Sistemas operativos\TareaProgramada2\BackJackSO\Controlador\obj\Debug\Controlador.csproj.CopyComplete
 C:\Users\Esteban-Vargas\Desktop\Tercer Año\Ciclo l\Sistemas operativos\TareaProgramada2\BackJackSO\Controlador\obj\Debug\Controlador.exe
 C:\Users\Esteban-Vargas\Desktop\Tercer Año\Ciclo l\Sistemas operativos\TareaProgramada2\BackJackSO\Controlador\obj\Debug\Controlador.pdb
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\bin\Debug\Controlador.exe.config
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\bin\Debug\Controlador.exe
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\bin\Debug\Controlador.pdb
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\bin\Debug\Newtonsoft.Json.dll
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\bin\Debug\Newtonsoft.Json.xml
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\obj\Debug\Controlador.csprojAssemblyReference.cache
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\obj\Debug\Controlador.csproj.CoreCompileInputs.cache
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\obj\Debug\Controlador.csproj.CopyComplete
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\obj\Debug\Controlador.exe
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\obj\Debug\Controlador.pdb

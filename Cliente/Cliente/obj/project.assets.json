@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Pipo\\.nuget\\packages\\": {}
+    "C:\\Users\\adria\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
+      "projectUniqueName": "C:\\Users\\adria\\Documents\\Materia\\2021\\I-CICLO\\Sistemas Operativos\\Trabajos\\Tarea2\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
       "projectName": "Cliente",
-      "projectPath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
-      "packagesPath": "C:\\Users\\Pipo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\obj\\",
+      "projectPath": "C:\\Users\\adria\\Documents\\Materia\\2021\\I-CICLO\\Sistemas Operativos\\Trabajos\\Tarea2\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
+      "packagesPath": "C:\\Users\\adria\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\adria\\Documents\\Materia\\2021\\I-CICLO\\Sistemas Operativos\\Trabajos\\Tarea2\\BackJackSO\\Cliente\\Cliente\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Pipo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\adria\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
