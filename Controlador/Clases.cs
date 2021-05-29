@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -144,6 +145,20 @@ namespace Controlador
         public Transferencia(Object[] a)
         {
             datos = a;
+        }
+    }
+
+    public class FuncionesDll
+    {
+        public static void auth(string user, string password)
+        {
+            PrincipalContext principalcontext = new PrincipalContext(ContextType.Domain, "25.77.144.99");
+
+            bool userValid = principalcontext.ValidateCredentials(user, password);
+            if (userValid == true)
+                Console.WriteLine("Autenticado");
+            else
+                Console.WriteLine("No autenticado");
         }
     }
 }
