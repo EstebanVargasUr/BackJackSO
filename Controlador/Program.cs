@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using Funciones;
 
 namespace Controlador
 {
@@ -23,8 +24,8 @@ namespace Controlador
         {
             Console.Title = "Server";
 
-            FuncionesDll.auth("CharlesBarker", "Una2021");
-            //FuncionesDll.register();
+            Funciones.UsuariosFunciones.auth("CharlesBarker", "Una2021");
+            //Funciones.UsuariosFunciones.register();
 
             SetupServer();
             Console.ReadLine(); // When we press enter close everything

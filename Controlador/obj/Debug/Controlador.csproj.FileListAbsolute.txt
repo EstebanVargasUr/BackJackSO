@@ -18,3 +18,5 @@ C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea
 C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\obj\Debug\Controlador.csproj.CopyComplete
 C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\obj\Debug\Controlador.exe
 C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\obj\Debug\Controlador.pdb
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\bin\Debug\Funciones.dll
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\bin\Debug\Funciones.pdb
