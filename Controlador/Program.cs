@@ -22,7 +22,10 @@ namespace Controlador
         static void Main()
         {
             Console.Title = "Server";
-            FuncionesDll.auth("esteban", "Salchicha7");
+
+            FuncionesDll.auth("CharlesBarker", "Una2021");
+            //FuncionesDll.register();
+
             SetupServer();
             Console.ReadLine(); // When we press enter close everything
             CloseAllSockets();
