@@ -23,18 +23,19 @@ namespace Controlador
             usuario = _usuario;
             saldo = 1000;
             apuesta = 0;
+            cartas = new List<Cartas>();
         }
     }
     class Juego
     {
         public List<Cartas> cartas { get; set; }
-        public int turnoJugador { get; set; }
+        public string turnoJugador { get; set; }
 
         
         public Juego()
         {
             cartas = new List<Cartas>();
-            turnoJugador = 1;
+            turnoJugador = "crupier";
         }
 
         public void CrearCartas()

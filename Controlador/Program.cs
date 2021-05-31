@@ -55,12 +55,12 @@ namespace Controlador
 
         private static void updatateAllSockets()
         {
-            byte[] data = Encoding.ASCII.GetBytes("Actualizado");
+            Transferencia tr = new Transferencia("actualizar", null, ListJugadores, juego);
+            byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
+
             foreach (Socket socket in clientSockets)
             {
-
                 socket.Send(data);
-
             }
         }
 
@@ -82,9 +82,6 @@ namespace Controlador
                 clientSockets.Add(socket);
             }
             */
-
-            Jugadores jug = new Jugadores();
-            ListJugadores.Add(jug);
 
             clientSockets.Add(socket);
             
@@ -145,12 +142,28 @@ namespace Controlador
                     }
                 }
 
-                
+                updatateAllSockets();
             }
 
-            else if (deserialized.operacion == "quedarse")
+            else if (deserialized.operacion == "pasar turno")
             {
                 /*EN PROCESO*/
+                for (int i = 0; i < ListJugadores.Count; i++)
+                {
+                    if (deserialized.datos[0].ToString() == ListJugadores[i].usuario)
+                    {
+                        if (i < ListJugadores.Count)
+                        {
+                            juego.turnoJugador = ListJugadores[i + 1].usuario;
+                        }
+                        else
+                        {
+                            juego.turnoJugador = ListJugadores[0].usuario;
+                        }
+                        break;
+                    }
+                }
+                updatateAllSockets();
             }
 
             else if (deserialized.operacion == "apuesta")
@@ -163,12 +176,13 @@ namespace Controlador
                         x.apuesta = (int)deserialized.datos[1];
                     }
                 }
-
+                Transferencia tr = new Transferencia("actualizar", null, ListJugadores, juego);
+                byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
+                current.Send(data);
             }
 
             else if (deserialized.operacion == "registrarse")
             {
-                /*EN PROCESO*/
                 Funciones.UsuariosFunciones.register(deserialized.datos[0].ToString(), deserialized.datos[1].ToString());
 
                 if (Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
@@ -191,9 +205,10 @@ namespace Controlador
                 Console.WriteLine(deserialized.datos[0].ToString()+" "+deserialized.datos[1].ToString());
                 if(Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
                 {
-                    Transferencia tr = new Transferencia("aceptado", null, null, null);
-                    byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
-                    current.Send(data);
+                    Jugadores jug = new Jugadores(deserialized.datos[0].ToString());
+                    ListJugadores.Add(jug);
+
+                    updatateAllSockets();
                 }
                 else
                 {
@@ -205,6 +220,7 @@ namespace Controlador
 
             else if (deserialized.operacion == "salir") // Client wants to exit gracefully
             {
+                /*EN PROCESO*/
                 // Always Shutdown before closing
                 foreach (Jugadores x in ListJugadores)
                 {
