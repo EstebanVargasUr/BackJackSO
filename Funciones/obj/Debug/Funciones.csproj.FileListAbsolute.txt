@@ -1,0 +1,6 @@
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Funciones\bin\Debug\Funciones.dll
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Funciones\bin\Debug\Funciones.pdb
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Funciones\obj\Debug\Funciones.csprojAssemblyReference.cache
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Funciones\obj\Debug\Funciones.csproj.CoreCompileInputs.cache
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Funciones\obj\Debug\Funciones.dll
+C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Funciones\obj\Debug\Funciones.pdb
