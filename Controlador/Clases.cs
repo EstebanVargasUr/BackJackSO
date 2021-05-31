@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +9,6 @@ namespace Controlador
     class Jugadores
     {
         public string usuario { get; set; }
-        public string password { get; set; }
         public int saldo { get; set; }
         public int apuesta { get; set; }
         public List<Cartas> cartas { get; set; }
@@ -20,10 +18,9 @@ namespace Controlador
 
         }
 
-        public Jugadores(string _usuario, string _password)
+        public Jugadores(string _usuario)
         {
             usuario = _usuario;
-            password = _password;
             saldo = 1000;
             apuesta = 0;
         }
@@ -37,6 +34,7 @@ namespace Controlador
         public Juego()
         {
             cartas = new List<Cartas>();
+            turnoJugador = 1;
         }
 
         public void CrearCartas()
@@ -139,11 +137,21 @@ namespace Controlador
 
     class Transferencia
     {
+        public string operacion;
+
         public Object[] datos;
 
-        public Transferencia(Object[] a)
+        public List<Jugadores> jugadores;
+
+        public Juego juego;
+
+        public Transferencia(string a, Object[] b, List<Jugadores>  c, Juego d)
         {
-            datos = a;
+            operacion = a;
+            datos = b;
+            jugadores = c;
+            juego = d;
         }
+
     }
 }

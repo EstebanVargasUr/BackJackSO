@@ -16,16 +16,12 @@ namespace Controlador
         private const int BUFFER_SIZE = 2048;
         private const int PORT = 100;
         private static readonly byte[] buffer = new byte[BUFFER_SIZE];
-        private static Jugadores jugadores = new Jugadores();
         private static Juego juego = new Juego();
         private static List<Jugadores> ListJugadores = new List<Jugadores>();
 
         static void Main()
         {
             Console.Title = "Server";
-
-            Funciones.UsuariosFunciones.auth("CharlesBarker", "Una2021");
-            //Funciones.UsuariosFunciones.register();
 
             SetupServer();
             Console.ReadLine(); // When we press enter close everything
@@ -121,54 +117,103 @@ namespace Controlador
             Transferencia deserialized = JsonConvert.DeserializeObject<Transferencia>(text);
 
 
-            Console.WriteLine("Received Text: " + deserialized.datos[0]);
-
-            if (text.ToLower() == "get time") // Client requested time
+            if (deserialized.operacion == "pedir cartas inicial")
             {
-                Console.WriteLine("Text is a get time request");
-                byte[] data = Encoding.ASCII.GetBytes(DateTime.Now.ToLongTimeString());
-                current.Send(data);
-                Console.WriteLine("Time sent to client");
-
+                /*EN PROCESO*/
+                foreach (Jugadores x in ListJugadores)
+                {
+                    if(deserialized.datos[0].ToString() == x.usuario)
+                    {
+                        x.cartas.Add(juego.cartas[0]);
+                        juego.cartas.RemoveAt(0);
+                        x.cartas.Add(juego.cartas[0]);
+                        juego.cartas.RemoveAt(0);
+                    }
+                }
+                
             }
 
-            else if (deserialized.datos[0].ToString() == "pedir cartas inicial")
+            else if (deserialized.operacion == "pedir carta")
             {
-                jugadores.cartas.Add(juego.cartas[0]);
-                juego.cartas.RemoveAt(0);
-                jugadores.cartas.Add(juego.cartas[0]);
-                juego.cartas.RemoveAt(0);
+                /*EN PROCESO*/
+                foreach (Jugadores x in ListJugadores)
+                {
+                    if (deserialized.datos[0].ToString() == x.usuario)
+                    {
+                        x.cartas.Add(juego.cartas[0]);
+                        juego.cartas.RemoveAt(0);
+                    }
+                }
+
+                
             }
 
-            else if (deserialized.datos[0].ToString() == "pedir carta")
-            {
-                jugadores.cartas.Add(juego.cartas[0]);
-                juego.cartas.RemoveAt(0);
-            }
-
-            else if (deserialized.datos[0].ToString() == "quedarse")
+            else if (deserialized.operacion == "quedarse")
             {
                 /*EN PROCESO*/
             }
 
-            else if (deserialized.datos[0].ToString() == "apuesta")
+            else if (deserialized.operacion == "apuesta")
             {
                 /*EN PROCESO*/
+                foreach (Jugadores x in ListJugadores)
+                {
+                    if (deserialized.datos[0].ToString() == x.usuario)
+                    {
+                        x.apuesta = (int)deserialized.datos[1];
+                    }
+                }
+
             }
 
-            else if (deserialized.datos[0].ToString() == "registrarse")
+            else if (deserialized.operacion == "registrarse")
             {
                 /*EN PROCESO*/
+                Funciones.UsuariosFunciones.register(deserialized.datos[0].ToString(), deserialized.datos[1].ToString());
+
+                if (Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
+                {
+                    Transferencia tr = new Transferencia("registrado", null, null, null);
+                    byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
+                    current.Send(data);
+                }
+                else
+                {
+                    Transferencia tr = new Transferencia("no registrado", null, null, null);
+                    byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
+                    current.Send(data);
+                }
             }
 
-            else if (deserialized.datos[0].ToString() == "login")
+            else if (deserialized.operacion == "login")
             {
                 /*EN PROCESO*/
+                Console.WriteLine(deserialized.datos[0].ToString()+" "+deserialized.datos[1].ToString());
+                if(Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
+                {
+                    Transferencia tr = new Transferencia("aceptado", null, null, null);
+                    byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
+                    current.Send(data);
+                }
+                else
+                {
+                    Transferencia tr = new Transferencia("rechazado",null, null, null);
+                    byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
+                    current.Send(data);
+                }
             }
 
-            else if (text.ToLower() == "exit") // Client wants to exit gracefully
+            else if (deserialized.operacion == "salir") // Client wants to exit gracefully
             {
                 // Always Shutdown before closing
+                foreach (Jugadores x in ListJugadores)
+                {
+                    if (deserialized.datos[0].ToString() == x.usuario)
+                    {
+                        ListJugadores.Remove(x);
+                    }
+                }
+
                 current.Shutdown(SocketShutdown.Both);
                 current.Close();
                 clientSockets.Remove(current);
@@ -178,9 +223,10 @@ namespace Controlador
             else
             {
                 Console.WriteLine("Text is an invalid request");
-                byte[] data = Encoding.ASCII.GetBytes("Invalid request");
+                Transferencia tr = new Transferencia("Operacion invalida", null, null, null);
+                byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
                 current.Send(data);
-                updatateAllSockets();
+                
                 Console.WriteLine("Warning Sent");
             }
 
