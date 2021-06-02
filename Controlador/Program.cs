@@ -138,6 +138,7 @@ namespace Controlador
                     if (deserialized.datos[0].ToString() == x.usuario)
                     {
                         x.cartas.Add(juego.cartas[0]);
+                        Console.WriteLine(juego.cartas[0].valor.ToString() + juego.cartas[0].tipo.ToString());
                         juego.cartas.RemoveAt(0);
                     }
                 }
@@ -201,7 +202,8 @@ namespace Controlador
 
             else if (deserialized.operacion == "login")
             {
-                /*EN PROCESO*/
+                
+            
                 Console.WriteLine(deserialized.datos[0].ToString()+" "+deserialized.datos[1].ToString());
                 if(Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
                 {
@@ -216,6 +218,9 @@ namespace Controlador
                     byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
                     current.Send(data);
                 }
+                
+
+                updatateAllSockets();
             }
 
             else if (deserialized.operacion == "salir") // Client wants to exit gracefully

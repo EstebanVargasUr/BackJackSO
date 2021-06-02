@@ -9,7 +9,7 @@
       Title="Verificacion">
     <Grid x:Name="verificacion" Margin="1,1,1,1" ScrollViewer.HorizontalScrollBarVisibility="Auto" RenderTransformOrigin="0.519,0.548" Width="1200" Height="768">
         <Grid.Background>
-            <ImageBrush ImageSource="/Pages/Fond.jpg"/>
+            <ImageBrush ImageSource="/resources/Fond.jpg"/>
         </Grid.Background>
         <StackPanel x:Name="connect" Margin="661,284,603,430" Background="#FF314252" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Visible">
             <StackPanel.RenderTransform>

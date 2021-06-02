@@ -7,15 +7,145 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fond.jpg" />
     <None Remove="Icon.png" />
-    <None Remove="Pages\Fond.jpg" />
+    <None Remove="resources\100Chip.png" />
+    <None Remove="resources\200Chip.png" />
+    <None Remove="resources\25Chip.png" />
+    <None Remove="resources\50Chip.png" />
+    <None Remove="resources\BlackJackTable.png" />
+    <None Remove="resources\Cartas\101.bmp" />
+    <None Remove="resources\Cartas\102.bmp" />
+    <None Remove="resources\Cartas\103.bmp" />
+    <None Remove="resources\Cartas\104.bmp" />
+    <None Remove="resources\Cartas\11.bmp" />
+    <None Remove="resources\Cartas\111.bmp" />
+    <None Remove="resources\Cartas\112.bmp" />
+    <None Remove="resources\Cartas\113.bmp" />
+    <None Remove="resources\Cartas\114.bmp" />
+    <None Remove="resources\Cartas\12.bmp" />
+    <None Remove="resources\Cartas\121.bmp" />
+    <None Remove="resources\Cartas\122.bmp" />
+    <None Remove="resources\Cartas\123.bmp" />
+    <None Remove="resources\Cartas\124.bmp" />
+    <None Remove="resources\Cartas\13.bmp" />
+    <None Remove="resources\Cartas\131.bmp" />
+    <None Remove="resources\Cartas\132.bmp" />
+    <None Remove="resources\Cartas\133.bmp" />
+    <None Remove="resources\Cartas\134.bmp" />
+    <None Remove="resources\Cartas\14.bmp" />
+    <None Remove="resources\Cartas\21.bmp" />
+    <None Remove="resources\Cartas\22.bmp" />
+    <None Remove="resources\Cartas\23.bmp" />
+    <None Remove="resources\Cartas\24.bmp" />
+    <None Remove="resources\Cartas\31.bmp" />
+    <None Remove="resources\Cartas\32.bmp" />
+    <None Remove="resources\Cartas\33.bmp" />
+    <None Remove="resources\Cartas\34.bmp" />
+    <None Remove="resources\Cartas\41.bmp" />
+    <None Remove="resources\Cartas\42.bmp" />
+    <None Remove="resources\Cartas\43.bmp" />
+    <None Remove="resources\Cartas\44.bmp" />
+    <None Remove="resources\Cartas\51.bmp" />
+    <None Remove="resources\Cartas\52.bmp" />
+    <None Remove="resources\Cartas\53.bmp" />
+    <None Remove="resources\Cartas\54.bmp" />
+    <None Remove="resources\Cartas\61.bmp" />
+    <None Remove="resources\Cartas\62.bmp" />
+    <None Remove="resources\Cartas\63.bmp" />
+    <None Remove="resources\Cartas\64.bmp" />
+    <None Remove="resources\Cartas\71.bmp" />
+    <None Remove="resources\Cartas\72.bmp" />
+    <None Remove="resources\Cartas\73.bmp" />
+    <None Remove="resources\Cartas\74.bmp" />
+    <None Remove="resources\Cartas\81.bmp" />
+    <None Remove="resources\Cartas\82.bmp" />
+    <None Remove="resources\Cartas\83.bmp" />
+    <None Remove="resources\Cartas\84.bmp" />
+    <None Remove="resources\Cartas\91.bmp" />
+    <None Remove="resources\Cartas\92.bmp" />
+    <None Remove="resources\Cartas\93.bmp" />
+    <None Remove="resources\Cartas\94.bmp" />
+    <None Remove="resources\Cartas\blank.bmp" />
+    <None Remove="resources\Cartas\det1.bmp" />
+    <None Remove="resources\Cartas\det2.bmp" />
+    <None Remove="resources\Fond.jpg" />
+    <None Remove="resources\Icon.png" />
+    <None Remove="resources\Mesa.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Fond.jpg" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FuncionesDLL\FuncionesDLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Icon.png" />
-    <Resource Include="Pages\Fond.jpg" />
+    <Resource Include="resources\100Chip.png" />
+    <Resource Include="resources\200Chip.png" />
+    <Resource Include="resources\25Chip.png" />
+    <Resource Include="resources\50Chip.png" />
+    <Resource Include="resources\BlackJackTable.png" />
+    <Resource Include="resources\Cartas\101.bmp" />
+    <Resource Include="resources\Cartas\102.bmp" />
+    <Resource Include="resources\Cartas\103.bmp" />
+    <Resource Include="resources\Cartas\104.bmp" />
+    <Resource Include="resources\Cartas\11.bmp" />
+    <Resource Include="resources\Cartas\111.bmp" />
+    <Resource Include="resources\Cartas\112.bmp" />
+    <Resource Include="resources\Cartas\113.bmp" />
+    <Resource Include="resources\Cartas\114.bmp" />
+    <Resource Include="resources\Cartas\12.bmp" />
+    <Resource Include="resources\Cartas\121.bmp" />
+    <Resource Include="resources\Cartas\122.bmp" />
+    <Resource Include="resources\Cartas\123.bmp" />
+    <Resource Include="resources\Cartas\124.bmp" />
+    <Resource Include="resources\Cartas\13.bmp" />
+    <Resource Include="resources\Cartas\131.bmp" />
+    <Resource Include="resources\Cartas\132.bmp" />
+    <Resource Include="resources\Cartas\133.bmp" />
+    <Resource Include="resources\Cartas\134.bmp" />
+    <Resource Include="resources\Cartas\14.bmp" />
+    <Resource Include="resources\Cartas\21.bmp" />
+    <Resource Include="resources\Cartas\22.bmp" />
+    <Resource Include="resources\Cartas\23.bmp" />
+    <Resource Include="resources\Cartas\24.bmp" />
+    <Resource Include="resources\Cartas\31.bmp" />
+    <Resource Include="resources\Cartas\32.bmp" />
+    <Resource Include="resources\Cartas\33.bmp" />
+    <Resource Include="resources\Cartas\34.bmp" />
+    <Resource Include="resources\Cartas\41.bmp" />
+    <Resource Include="resources\Cartas\42.bmp" />
+    <Resource Include="resources\Cartas\43.bmp" />
+    <Resource Include="resources\Cartas\44.bmp" />
+    <Resource Include="resources\Cartas\51.bmp" />
+    <Resource Include="resources\Cartas\52.bmp" />
+    <Resource Include="resources\Cartas\53.bmp" />
+    <Resource Include="resources\Cartas\54.bmp" />
+    <Resource Include="resources\Cartas\61.bmp" />
+    <Resource Include="resources\Cartas\62.bmp" />
+    <Resource Include="resources\Cartas\63.bmp" />
+    <Resource Include="resources\Cartas\64.bmp" />
+    <Resource Include="resources\Cartas\71.bmp" />
+    <Resource Include="resources\Cartas\72.bmp" />
+    <Resource Include="resources\Cartas\73.bmp" />
+    <Resource Include="resources\Cartas\74.bmp" />
+    <Resource Include="resources\Cartas\81.bmp" />
+    <Resource Include="resources\Cartas\82.bmp" />
+    <Resource Include="resources\Cartas\83.bmp" />
+    <Resource Include="resources\Cartas\84.bmp" />
+    <Resource Include="resources\Cartas\91.bmp" />
+    <Resource Include="resources\Cartas\92.bmp" />
+    <Resource Include="resources\Cartas\93.bmp" />
+    <Resource Include="resources\Cartas\94.bmp" />
+    <Resource Include="resources\Cartas\blank.bmp" />
+    <Resource Include="resources\Cartas\det1.bmp" />
+    <Resource Include="resources\Cartas\det2.bmp" />
+    <Resource Include="resources\Fond.jpg" />
+    <Resource Include="resources\Icon.png" />
+    <Resource Include="resources\Mesa.png" />
   </ItemGroup>
 
 </Project>

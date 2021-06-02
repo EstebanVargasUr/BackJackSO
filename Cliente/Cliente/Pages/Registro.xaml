@@ -1,0 +1,33 @@
+﻿<Page x:Class="Cliente.Pages.Registro"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cliente.Pages"
+      mc:Ignorable="d"
+      Title="Registro" Height="768" Width="1200">
+
+    <Grid x:Name="registro" Width="1200" Height="768">
+        <Grid.Background>
+            <ImageBrush ImageSource="/resources/Fond.jpg"/>
+        </Grid.Background>
+        <StackPanel x:Name="verifi" Margin="436,134,428,270" Background="#FF314252" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Visible" Width="336" Height="364">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.749"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="1.973"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Label x:Name="txtRegistro" Content="Registro" HorizontalAlignment="Center" Height="51" Width="165" FontSize="36" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" Background="{x:Null}" FontFamily="Cooper Black" Foreground="White"/>
+            <Label x:Name="txtUsuarioR" Content="Usuario" Foreground="White" HorizontalAlignment="Center" FontSize="18" Width="70" Margin="0,20,0,0" Height="35"/>
+            <TextBox x:Name="lbusuarioR" TextWrapping="Wrap" Width="138" Height="22" FontSize="16" Background="{x:Null}" Foreground="White" VerticalAlignment="Center" TextAlignment="Center" TextChanged="lbIp_TextChanged"/>
+            <Label x:Name="txtContrasenaR" Content="Contraseña" Foreground="White" FontSize="18" Width="100" Height="35" Margin="0,20,0,0"/>
+            <TextBox x:Name="lbContrasenaR" TextWrapping="Wrap" Width="138" Height="22" FontSize="16" Background="{x:Null}" Foreground="White" TextAlignment="Center" TextChanged="lbPuerto_TextChanged"/>
+            <Button x:Name="btnRegistrar" Content="Registrar" Height="42" Margin="20,30,20,0" FontSize="22" Background="Black" Foreground="White" Click="registrar"/>
+            <Button x:Name="btnVolver" Content="Volver" Width="298" Height="42" Click="Button_Click_1" FontSize="22" Background="Black" Foreground="White" Margin="0,15,0,0"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

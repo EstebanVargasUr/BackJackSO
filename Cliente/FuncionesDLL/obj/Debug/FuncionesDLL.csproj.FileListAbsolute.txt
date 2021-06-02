@@ -1,0 +1,6 @@
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\FuncionesDLL\bin\Debug\FuncionesDLL.dll
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\FuncionesDLL\bin\Debug\FuncionesDLL.pdb
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\FuncionesDLL\obj\Debug\FuncionesDLL.csprojAssemblyReference.cache
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\FuncionesDLL\obj\Debug\FuncionesDLL.csproj.CoreCompileInputs.cache
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\FuncionesDLL\obj\Debug\FuncionesDLL.dll
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\FuncionesDLL\obj\Debug\FuncionesDLL.pdb

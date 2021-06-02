@@ -22,3 +22,15 @@ C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea
 C:\Users\adria\Documents\Materia\2021\I-CICLO\Sistemas Operativos\Trabajos\Tarea2\BackJackSO\Controlador\bin\Debug\Funciones.pdb
 C:\Users\Esteban-Vargas\Desktop\Tercer Año\Ciclo l\Sistemas operativos\TareaProgramada2\BackJackSO\Controlador\bin\Debug\Funciones.dll
 C:\Users\Esteban-Vargas\Desktop\Tercer Año\Ciclo l\Sistemas operativos\TareaProgramada2\BackJackSO\Controlador\bin\Debug\Funciones.pdb
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\bin\Debug\Controlador.exe.config
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\bin\Debug\Controlador.exe
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\bin\Debug\Controlador.pdb
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\bin\Debug\Funciones.dll
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\bin\Debug\Funciones.pdb
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\obj\Debug\Controlador.csprojAssemblyReference.cache
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\obj\Debug\Controlador.csproj.CoreCompileInputs.cache
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\obj\Debug\Controlador.csproj.CopyComplete
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\obj\Debug\Controlador.exe
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Controlador\obj\Debug\Controlador.pdb

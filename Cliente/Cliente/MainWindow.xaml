@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="BlackJack" Height="768" Width="1200" Icon="/Icon.png" ResizeMode="NoResize" VerticalAlignment="Center" HorizontalAlignment="Center">
     <Window.Background>
-        <ImageBrush ImageSource="/Fond.jpg"/>
+        <ImageBrush ImageSource="/resources/Fond.jpg"/>
     </Window.Background>
     <Frame Content="" Source="/Pages/Inicio.xaml" Margin="1,1,1,1" NavigationUIVisibility="Hidden"/>
 </Window>

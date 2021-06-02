@@ -16,6 +16,7 @@ using System.Net;
 
 using Cliente.Pages;
 
+
 namespace Cliente.Pages
 {
     /// <summary>
@@ -36,16 +37,19 @@ namespace Cliente.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+          
             if (cl.ConnectToServer(lbIp.Text, 100))
             {
+
                 NavigationService.Navigate(new Verificacion());
-                //cl.SendRequest("");
             }
             else
             {
                 MessageBox.Show("Error en la conexion con el servidor", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
+            
+            //NavigationService.Navigate(new Verificacion());
         }
 
         private void lbIp_TextChanged(object sender, TextChangedEventArgs e)

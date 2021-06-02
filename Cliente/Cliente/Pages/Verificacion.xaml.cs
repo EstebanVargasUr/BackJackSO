@@ -38,8 +38,22 @@ namespace Cliente.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string env = "Usuario: " + lbusuario.Text + " Contraseña " + lbContrasena.Text;
-          cl.SendRequest(env);
+            
+            Object[] enviar = {lbusuario.Text, lbContrasena.Text};
+            cl.SendRequest("login",enviar);
+
+            if(cl.ReceiveResponse().operacion == "actualizar" && cl.ReceiveResponse().jugadores != null)
+            {
+                
+                NavigationService.Navigate(new MesaJuego());
+            }
+            else
+            {
+                MessageBox.Show("Error, usuario o contraseña incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+            //NavigationService.Navigate(new MesaJuego());
+            
         }
 
         private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
@@ -49,7 +63,7 @@ namespace Cliente.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Registro());
         }
     }
 }

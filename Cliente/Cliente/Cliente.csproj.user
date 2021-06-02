@@ -10,6 +10,12 @@
     <Compile Update="Pages\Inicio.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\MesaJuego.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Registro.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Verificacion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,6 +25,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Inicio.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\MesaJuego.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Registro.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Verificacion.xaml">

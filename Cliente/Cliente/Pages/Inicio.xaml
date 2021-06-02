@@ -10,7 +10,7 @@
 
     <Grid x:Name="Inicio1" Margin="1,1,1,1" Width="1200" Height="768">
         <Grid.Background>
-            <ImageBrush ImageSource="/Pages/Fond.jpg"/>
+            <ImageBrush ImageSource="/resources/Fond.jpg"/>
         </Grid.Background>
         <StackPanel x:Name="connect" Margin="445,133,417,269" Background="#FF314252" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Visible">
             <StackPanel.RenderTransform>
