@@ -92,6 +92,7 @@ namespace Controlador
             {
                 puntuacionCrupier += x.valor;
             }
+
             foreach (Cartas x in jugador.cartas)
             {
                 puntuacionJugador += x.valor;

@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Funciones;
+using System.Threading;
 
 namespace Controlador
 {
@@ -28,6 +29,87 @@ namespace Controlador
             CloseAllSockets();
         }
 
+        private static void pasarTurno(Transferencia deserialized)
+        {
+            for (int i = 0; i < ListJugadores.Count; i++)
+            {
+                if (deserialized.datos[0].ToString() == ListJugadores[i].usuario)
+                {
+                    if (i < ListJugadores.Count)
+                    {
+                        juego.turnoJugador = ListJugadores[i + 1].usuario;
+                        updatateAllSockets();
+                    }
+                    else
+                    {
+                        juego.turnoJugador = ListJugadores[0].usuario;
+
+                        finRonda();
+                        updatateAllSockets();
+
+                        Thread th1 = new Thread(new ThreadStart(reiniciarPartida));
+                        th1.Start();
+                    }
+                    break;
+                }
+            }
+            
+        }
+        private static void reiniciarPartida()
+        {
+            Thread.Sleep(3000);
+
+            juego = new Juego();
+            juego.CrearCartas();
+
+            foreach (Jugadores x in ListJugadores)
+            {
+                x.cartas.Clear();
+                x.apuesta = 0;
+            }
+            updatateAllSockets();
+        }
+
+        private static void finRonda()
+        {
+            if (ListJugadores.Count > 1)
+            {
+                int puntuacionCrupier = 0;
+
+                while (puntuacionCrupier <= 16)
+                {
+                    puntuacionCrupier = 0;
+
+                    foreach (Cartas x in ListJugadores[0].cartas)
+                    {
+                        puntuacionCrupier += x.valor;
+                    }
+
+                    if (puntuacionCrupier <= 16)
+                    {
+                        ListJugadores[0].cartas.Add(juego.cartas[0]);
+                        juego.cartas.RemoveAt(0);
+                    }
+                }
+
+                for (int i = 1; i < ListJugadores.Count; i++)
+                {
+                    string ganador = juego.VerificarGanadores(ListJugadores[i], ListJugadores[0]);
+
+                    if (ganador == "Jugador")
+                    {
+                        ListJugadores[i].saldo += ListJugadores[i].apuesta * 2;
+                    }
+                    else if(ganador == "Empate")
+                    {
+                        ListJugadores[i].saldo += ListJugadores[i].apuesta;
+                    }
+                }
+            }
+            
+            
+
+        }
         private static void SetupServer()
         {
             Console.WriteLine("Setting up server...");
@@ -35,7 +117,12 @@ namespace Controlador
             serverSocket.Listen(0);
             serverSocket.BeginAccept(AcceptCallback, null);
             Console.WriteLine("Server running...");
+
             juego.CrearCartas();
+
+            //Se agrega el crupier a la lista de jugadores
+            Jugadores jug = new Jugadores("crupier");
+            ListJugadores.Add(jug);
         }
 
         /// <summary>
@@ -77,17 +164,17 @@ namespace Controlador
                 return;
             }
 
-            /*if(clientSockets.Count < 7)
+            if(clientSockets.Count < 7)
             {
                 clientSockets.Add(socket);
+                socket.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, socket);
+                Console.WriteLine("Client connected, waiting for request...");
+                serverSocket.BeginAccept(AcceptCallback, null);
             }
-            */
-
-            clientSockets.Add(socket);
-            
-            socket.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, socket);
-            Console.WriteLine("Client connected, waiting for request...");
-            serverSocket.BeginAccept(AcceptCallback, null);
+            else
+            {
+                //AGREGAR EN COLA DE ESPERA
+            }
         }
 
         private static void ReceiveCallback(IAsyncResult AR)
@@ -132,7 +219,7 @@ namespace Controlador
 
             else if (deserialized.operacion == "pedir carta")
             {
-                /*EN PROCESO*/
+                /*EN PRUEBA*/
                 foreach (Jugadores x in ListJugadores)
                 {
                     if (deserialized.datos[0].ToString() == x.usuario)
@@ -140,6 +227,20 @@ namespace Controlador
                         x.cartas.Add(juego.cartas[0]);
                         Console.WriteLine(juego.cartas[0].valor.ToString() + juego.cartas[0].tipo.ToString());
                         juego.cartas.RemoveAt(0);
+
+                        int puntuacionJugador = 0;
+
+                        foreach (Cartas y in x.cartas)
+                        {
+                            puntuacionJugador += y.valor;
+                        }
+
+                        if (puntuacionJugador >= 21)
+                        {
+                            pasarTurno(deserialized);
+                        }
+                     
+                        break;
                     }
                 }
 
@@ -148,35 +249,22 @@ namespace Controlador
 
             else if (deserialized.operacion == "pasar turno")
             {
-                /*EN PROCESO*/
-                for (int i = 0; i < ListJugadores.Count; i++)
-                {
-                    if (deserialized.datos[0].ToString() == ListJugadores[i].usuario)
-                    {
-                        if (i < ListJugadores.Count)
-                        {
-                            juego.turnoJugador = ListJugadores[i + 1].usuario;
-                        }
-                        else
-                        {
-                            juego.turnoJugador = ListJugadores[0].usuario;
-                        }
-                        break;
-                    }
-                }
-                updatateAllSockets();
+                /*EN PRUEBA*/
+                pasarTurno(deserialized);
             }
 
             else if (deserialized.operacion == "apuesta")
             {
-                /*EN PROCESO*/
+                /*EN PRUEBA*/
                 foreach (Jugadores x in ListJugadores)
                 {
                     if (deserialized.datos[0].ToString() == x.usuario)
                     {
                         x.apuesta = (int)deserialized.datos[1];
+                        x.saldo -= x.apuesta;
                     }
                 }
+
                 Transferencia tr = new Transferencia("actualizar", null, ListJugadores, juego);
                 byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
                 current.Send(data);
@@ -202,11 +290,24 @@ namespace Controlador
 
             else if (deserialized.operacion == "login")
             {
-                
-            
+                /*EN PRUEBA*/
                 Console.WriteLine(deserialized.datos[0].ToString()+" "+deserialized.datos[1].ToString());
                 if(Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
                 {
+                    if (ListJugadores.Count == 1)
+                    {
+                        reiniciarPartida();
+
+                        ListJugadores[0].cartas.Add(juego.cartas[0]);
+                        juego.cartas.RemoveAt(0);
+                        ListJugadores[0].cartas.Add(juego.cartas[0]);
+                        juego.cartas.RemoveAt(0);
+
+                        juego.turnoJugador = deserialized.datos[0].ToString();
+
+                        //INICIA RONDA
+                    }
+
                     Jugadores jug = new Jugadores(deserialized.datos[0].ToString());
                     ListJugadores.Add(jug);
 
