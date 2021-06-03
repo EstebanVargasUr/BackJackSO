@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uWrsFyDhXQJPz3hHhWFfHoTI8VtbHDVi7cU18Ksk1+/YhV7uV/ZhOJSDqOiS+ex31uiRiFTdcX2dBZdFRlK+Bg==",
+  "dgSpecHash": "ILsE9hvADIrkXNiyQTd4luehALi/tHMir8RYccCTRKzN4r6X1vlvHIVIVoo7Kbi3HSq4Rnd8ZvJW++Ql8/kGGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Esteban-Vargas\\Desktop\\Cliente\\Cliente\\Cliente.csproj",
+  "projectFilePath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Esteban-Vargas\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\Pipo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

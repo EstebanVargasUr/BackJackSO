@@ -14,7 +14,7 @@ namespace Controlador
     {
         private static readonly Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         private static readonly List<Socket> clientSockets = new List<Socket>();
-        private const int BUFFER_SIZE = 2048;
+        private const int BUFFER_SIZE = 8192;
         private const int PORT = 100;
         private static readonly byte[] buffer = new byte[BUFFER_SIZE];
         private static Juego juego = new Juego();
@@ -225,7 +225,7 @@ namespace Controlador
                     if (deserialized.datos[0].ToString() == x.usuario)
                     {
                         x.cartas.Add(juego.cartas[0]);
-                        Console.WriteLine(juego.cartas[0].valor.ToString() + juego.cartas[0].tipo.ToString());
+                        Console.WriteLine(juego.cartas[0].caracter.ToString() + juego.cartas[0].tipo.ToString());
                         juego.cartas.RemoveAt(0);
 
                         int puntuacionJugador = 0;
@@ -321,7 +321,7 @@ namespace Controlador
                 }
                 
 
-                updatateAllSockets();
+                //updatateAllSockets();
             }
 
             else if (deserialized.operacion == "salir") // Client wants to exit gracefully

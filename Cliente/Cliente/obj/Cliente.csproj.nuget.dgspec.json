@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Esteban-Vargas\\Desktop\\Cliente\\Cliente\\Cliente.csproj": {}
+    "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Esteban-Vargas\\Desktop\\Cliente\\Cliente\\Cliente.csproj": {
+    "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Esteban-Vargas\\Desktop\\Cliente\\Cliente\\Cliente.csproj",
+        "projectUniqueName": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
         "projectName": "Cliente",
-        "projectPath": "C:\\Users\\Esteban-Vargas\\Desktop\\Cliente\\Cliente\\Cliente.csproj",
-        "packagesPath": "C:\\Users\\Esteban-Vargas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Esteban-Vargas\\Desktop\\Cliente\\Cliente\\obj\\",
+        "projectPath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
+        "packagesPath": "C:\\Users\\Pipo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Esteban-Vargas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pipo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

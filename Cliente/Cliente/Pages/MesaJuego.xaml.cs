@@ -22,6 +22,12 @@ namespace Cliente.Pages
         public static int dineroActual = 0;
         int apuesta = 0;
         bool init = false;
+        int cJugador0 = 0;
+        int cJugador1 = 0;
+        int cJugador2 = 0;
+        int cJugador3 = 0;
+        int cJugador4 = 0;
+        int countJugadores = 1;
         Comunicacion cm = new Comunicacion();
 
         public MesaJuego()
@@ -30,7 +36,8 @@ namespace Cliente.Pages
             InitializeComponent();
             lbApuesta.Text = apuesta.ToString() + "$";
             txtDinero.Content = dineroActual.ToString() + "$";
-
+            txtNombre.Content = VariablesStaticas.nombreUsuario;
+            lbTurnoJugador.Content = VariablesStaticas.transferencia.juego.turnoJugador;
             /* object[] sed = { "pipo" };
              cl.SendRequest("pedir carta", sed);*/
             txtDinero.Content = VariablesStaticas.transferencia.jugadores[1].saldo.ToString();
@@ -68,8 +75,55 @@ namespace Cliente.Pages
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
                         //SETEAR TODO LO GRAFICO AQUI
-                        txtDinero.Content = VariablesStaticas.transferencia.jugadores[1].saldo.ToString();
-                        
+                        //txtDinero.Content = VariablesStaticas.transferencia.jugadores[1].saldo.ToString();
+                        lbTurnoJugador.Content = VariablesStaticas.transferencia.juego.turnoJugador;
+                        countJugadores = 1; 
+                        foreach(Jugadores x in VariablesStaticas.transferencia.jugadores)
+                        {
+                            if(x.usuario == "pipo")
+                            {
+                                 int limite = x.cartas.Count;
+                                if (limite > 0)
+                                {
+                                    limite--;
+                                    Image im = new Image();
+                                    im.Width = 100;
+                                    im.Height = 110;
+                                    im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/" + x.cartas[limite].caracter + x.cartas[limite].tipo + ".bmp", UriKind.RelativeOrAbsolute));
+                                    Canvas.SetLeft(im, cJugador0);
+                                    Canvas.SetTop(im, 0);
+                                    cJugador0 += 30;
+                                    cvCartas.Children.Add(im);
+                                }
+                                
+                            }
+                            else if(x.usuario == "crupier")
+                            {
+
+                            }
+                            else
+                            {
+                                if(countJugadores == 1)
+                                {
+                                    int limite = x.cartas.Count;
+                                    if(limite > 0)
+                                    {
+                                        limite--;
+                                        Image im = new Image();
+                                        im.Width = 70;
+                                        im.Height = 80;
+                                        im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/" + x.cartas[limite].caracter + x.cartas[limite].tipo + ".bmp", UriKind.RelativeOrAbsolute));
+                                        Canvas.SetLeft(im, cJugador1);
+                                        Canvas.SetTop(im, 0);
+                                        cJugador1 += 30;
+                                        jugador1.Children.Add(im);
+                                    }
+                                    
+                                }
+                                countJugadores++;
+                            }
+                        }
+
                     }));
                 }
             }
@@ -150,21 +204,12 @@ namespace Cliente.Pages
                 MessageBox.Show("No puede realizar esta acción porque no es su turno", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
-            
-            /*
-            Image im = new Image();
-            im.Width = 100;
-            im.Height = 110;
-            im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/"+ cl.ReceiveResponse().juego.cartas[0].valor+ cl.ReceiveResponse().juego.cartas[0].tipo+".bmp", UriKind.RelativeOrAbsolute));
-            Canvas.SetLeft(im, 0);
-            Canvas.SetTop(im, 0);
-            cvCartas.Children.Add(im);
-            */
         }
 
         private void btnPlantarse_Click(object sender, RoutedEventArgs e)
         {
-
+            object[] sed = { VariablesStaticas.nombreUsuario };
+            cm.SendRequest("pasar turno", sed);
         }
     }
 }

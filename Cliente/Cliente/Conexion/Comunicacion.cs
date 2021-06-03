@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Windows;
 using Newtonsoft.Json;
 using System.Threading;
+using System.IO;
 
 namespace Cliente.Conexion
 {
@@ -71,16 +72,24 @@ namespace Cliente.Conexion
 
         public Transferencia ReceiveResponse()
         {
-            var buffer = new byte[2048];
-            int received = ClientSocket.Receive(buffer, SocketFlags.None);
-            if (received == 0)
+
+            try
             {
-                return null;
+                var buffer = new byte[8192];
+                int received = ClientSocket.Receive(buffer, SocketFlags.None);
+                if (received == 0)
+                {
+                    return null;
+                }
+                var data = new byte[received];
+                Array.Copy(buffer, data, received);
+                string text = Encoding.ASCII.GetString(data);
+                VariablesStaticas.transferencia = JsonConvert.DeserializeObject<Transferencia>(text);
             }
-            var data = new byte[received];
-            Array.Copy(buffer, data, received);
-            string text = Encoding.ASCII.GetString(data);
-            VariablesStaticas.transferencia = JsonConvert.DeserializeObject<Transferencia>(text);
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"The file was not found: '{e}'");
+            }
 
             return VariablesStaticas.transferencia;
         }

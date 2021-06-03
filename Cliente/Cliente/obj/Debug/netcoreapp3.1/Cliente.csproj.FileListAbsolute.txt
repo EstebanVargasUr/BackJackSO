@@ -21,8 +21,6 @@ C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\obj\Debug\netcorea
 C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\obj\Debug\netcoreapp3.1\Pages\Verificacion.g.cs
 C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\obj\Debug\netcoreapp3.1\Pages\Inicio.baml
 C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\obj\Debug\netcoreapp3.1\Pages\Verificacion.baml
-C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\bin\Debug\netcoreapp3.1\FuncionesDLL.dll
-C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\bin\Debug\netcoreapp3.1\FuncionesDLL.pdb
 C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\obj\Debug\netcoreapp3.1\Cliente.csproj.CopyComplete
 C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\obj\Debug\netcoreapp3.1\Pages\MesaJuego.g.cs
@@ -87,3 +85,5 @@ C:\Users\Esteban-Vargas\Desktop\Cliente\Cliente\obj\Debug\netcoreapp3.1\Cliente.
 C:\Users\Esteban-Vargas\Desktop\Cliente\Cliente\obj\Debug\netcoreapp3.1\Cliente.dll
 C:\Users\Esteban-Vargas\Desktop\Cliente\Cliente\obj\Debug\netcoreapp3.1\Cliente.pdb
 C:\Users\Esteban-Vargas\Desktop\Cliente\Cliente\obj\Debug\netcoreapp3.1\Cliente.genruntimeconfig.cache
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\obj\Debug\netcoreapp3.1\Pages\Registro.g.cs
+C:\Users\Pipo\Desktop\Proyectos\C#\BackJackSO\Cliente\Cliente\obj\Debug\netcoreapp3.1\Pages\Registro.baml

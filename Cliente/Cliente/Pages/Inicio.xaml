@@ -12,7 +12,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/resources/Fond.jpg"/>
         </Grid.Background>
-        <StackPanel x:Name="connect" Margin="445,133,417,269" Background="#FF314252" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Visible">
+        <StackPanel x:Name="connect" Margin="445,133,417,353" Background="#FF314252" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Visible">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -24,8 +24,6 @@
             <Label x:Name="textBienvenido" Content="Bienvenido" HorizontalAlignment="Center" Height="51" Width="217" FontSize="36" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" Background="{x:Null}" FontFamily="Cooper Black" Foreground="White"/>
             <Label x:Name="ingresarIp" Content="Ingrese la direccion IP" Foreground="White" HorizontalAlignment="Center" FontSize="18" Width="186" Margin="0,20,0,0" Height="35"/>
             <TextBox x:Name="lbIp" TextWrapping="Wrap" Width="138" Height="22" FontSize="16" Background="{x:Null}" Foreground="White" VerticalAlignment="Center" TextAlignment="Center" TextChanged="lbIp_TextChanged"/>
-            <Label x:Name="ingresarIp_Copy" Content="Ingrese el puerto&#xA;" Foreground="White" FontSize="18" Width="146" Height="35" Margin="0,20,0,0"/>
-            <TextBox x:Name="lbPuerto" TextWrapping="Wrap" Width="138" Height="22" FontSize="16" Background="{x:Null}" Foreground="White" TextAlignment="Center" TextChanged="lbPuerto_TextChanged"/>
             <Button x:Name="btnConectar" Content="Conectar" Height="42" Margin="20,60,20,0" FontSize="22" Background="Black" Foreground="White" Click="Button_Click"/>
         </StackPanel>
 

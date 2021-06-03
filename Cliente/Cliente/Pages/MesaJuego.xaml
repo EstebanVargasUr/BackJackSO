@@ -35,7 +35,7 @@
                 <ImageBrush ImageSource="/resources/200Chip.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="txtNombre" Content="pipo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="216,19,0,0" VerticalAlignment="Top" Background="Black" Foreground="White" Width="94" FontSize="20" Height="37"/>
+        <Label x:Name="txtNombre" Content="&#xD;&#xA;&#xD;&#xA;" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="216,19,0,0" VerticalAlignment="Top" Background="Black" Foreground="White" Width="94" FontSize="20" Height="37"/>
         <Label x:Name="txtDinero" Content="2000$" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="216,50,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" Width="89"/>
         <StackPanel x:Name="frameApuesta" Margin="445,220,417,356" Background="#FF314252" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Visible" Grid.ColumnSpan="2">
             <StackPanel.RenderTransform>
@@ -114,7 +114,8 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
         </Canvas>
-        <Label x:Name="lbAux" Content="Label" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="515,460,0,0" VerticalAlignment="Top" Width="219" FontSize="22"/>
+        <Label x:Name="lbAux" Content="Turno de:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="332,668,0,0" VerticalAlignment="Top" Width="101" FontSize="22" Foreground="White"/>
+        <Label x:Name="lbTurnoJugador" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="433,668,0,0" VerticalAlignment="Top" FontSize="22" Foreground="White"/>
 
     </Grid>
 </Page>
