@@ -116,6 +116,66 @@
         </Canvas>
         <Label x:Name="lbAux" Content="Turno de:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="332,668,0,0" VerticalAlignment="Top" Width="101" FontSize="22" Foreground="White"/>
         <Label x:Name="lbTurnoJugador" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="433,668,0,0" VerticalAlignment="Top" FontSize="22" Foreground="White"/>
+        <Label x:Name="lbNombreJ1" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="208,450,0,0" VerticalAlignment="Top" Foreground="White" FontSize="22" RenderTransformOrigin="0.5,0.5" Width="133" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="27.913"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="lbNombreJ2" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="84,327,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" FontSize="22" RenderTransformOrigin="0.5,0.5" Height="40" Width="135" VerticalContentAlignment="Center">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-269.976"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="lbNombreJ3" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="211,195,0,0" VerticalAlignment="Top" Foreground="White" FontSize="22" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" Height="38" Width="137">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-22.692"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="lbNombreJ4" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="809,201,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White" FontSize="22" Width="140">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="26.411"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="lbNombreJ5" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="944,316,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Foreground="White" FontSize="22" HorizontalContentAlignment="Center" Width="140" VerticalContentAlignment="Center">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-91"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="lbNombreJ6" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="841,446,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="22" RenderTransformOrigin="0.5,0.5" Width="141">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-29.317"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
 
     </Grid>
 </Page>

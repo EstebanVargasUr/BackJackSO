@@ -27,6 +27,8 @@ namespace Cliente.Pages
         int cJugador2 = 0;
         int cJugador3 = 0;
         int cJugador4 = 0;
+        int cJugador5 = 0;
+        int cJugador6 = 0;
         int countJugadores = 1;
         Comunicacion cm = new Comunicacion();
 
@@ -80,51 +82,73 @@ namespace Cliente.Pages
                         countJugadores = 1; 
                         foreach(Jugadores x in VariablesStaticas.transferencia.jugadores)
                         {
-                            if(x.usuario == "pipo")
+                            if (x.usuario == VariablesStaticas.nombreUsuario)
                             {
-                                 int limite = x.cartas.Count;
-                                if (limite > 0)
-                                {
-                                    limite--;
-                                    Image im = new Image();
-                                    im.Width = 100;
-                                    im.Height = 110;
-                                    im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/" + x.cartas[limite].caracter + x.cartas[limite].tipo + ".bmp", UriKind.RelativeOrAbsolute));
-                                    Canvas.SetLeft(im, cJugador0);
-                                    Canvas.SetTop(im, 0);
-                                    cJugador0 += 30;
-                                    cvCartas.Children.Add(im);
-                                }
-                                
+                                cargarCartasJugadores(cvCartas, cJugador0, x);
                             }
-                            else if(x.usuario == "crupier")
+                            else if (x.usuario == "crupier")
                             {
 
                             }
                             else
                             {
-                                if(countJugadores == 1)
+                                if (countJugadores == 1)
                                 {
-                                    int limite = x.cartas.Count;
-                                    if(limite > 0)
-                                    {
-                                        limite--;
-                                        Image im = new Image();
-                                        im.Width = 70;
-                                        im.Height = 80;
-                                        im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/" + x.cartas[limite].caracter + x.cartas[limite].tipo + ".bmp", UriKind.RelativeOrAbsolute));
-                                        Canvas.SetLeft(im, cJugador1);
-                                        Canvas.SetTop(im, 0);
-                                        cJugador1 += 30;
-                                        jugador1.Children.Add(im);
-                                    }
-                                    
+                                    lbNombreJ1.Content = x.usuario;
+                                    cargarCartasJugadores(jugador1, cJugador1, x);
+                                }
+                                else if (countJugadores == 2)
+                                {
+                                    lbNombreJ2.Content = x.usuario;
+                                    cargarCartasJugadores(jugador2, cJugador2, x);
+                                }
+                                else if (countJugadores == 3)
+                                {
+                                    lbNombreJ3.Content = x.usuario;
+                                    cargarCartasJugadores(jugador3, cJugador3, x);
+                                }
+                                else if (countJugadores == 4)
+                                {
+                                    lbNombreJ4.Content = x.usuario;
+                                    cargarCartasJugadores(jugador4, cJugador4, x);
+                                }
+                                else if (countJugadores == 5)
+                                {
+                                    lbNombreJ5.Content = x.usuario;
+                                    cargarCartasJugadores(jugador5, cJugador5, x);
+                                }
+                                else if (countJugadores == 6)
+                                {
+                                    lbNombreJ6.Content = x.usuario;
+                                    cargarCartasJugadores(jugador6, cJugador6, x);
                                 }
                                 countJugadores++;
                             }
                         }
 
                     }));
+                }
+            }
+        }
+
+        private void cargarCartasJugadores(Canvas canvjugador, int contJugador, Jugadores x)
+        {
+            int limite = x.cartas.Count;
+            canvjugador.Children.Clear();
+            contJugador = 0;
+            if (limite > 0)
+            {
+                limite--;
+                foreach (Cartas c in x.cartas)
+                {
+                    Image im = new Image();
+                    im.Width = 70;
+                    im.Height = 80;
+                    im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/" + c.caracter + c.tipo + ".bmp", UriKind.RelativeOrAbsolute));
+                    Canvas.SetLeft(im, contJugador);
+                    Canvas.SetTop(im, 0);
+                    contJugador += 30;
+                    canvjugador.Children.Add(im);
                 }
             }
         }
