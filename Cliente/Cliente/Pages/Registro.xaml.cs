@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cliente.Conexion;
 
 namespace Cliente.Pages
 {
@@ -18,7 +19,7 @@ namespace Cliente.Pages
     /// </summary>
     public partial class Registro : Page
     {
-        Cliente cl = new Cliente();
+        Comunicacion cm = new Comunicacion();
         public Registro()
         {
             InitializeComponent();
@@ -43,10 +44,10 @@ namespace Cliente.Pages
         {
             
             Object[] enviar = { lbusuarioR.Text, lbContrasenaR.Text};
-            cl.SendRequest("registrarse", enviar);
+            cm.SendRequest("registrarse", enviar);
 
 
-            if (cl.ReceiveResponse().operacion == "registrado")
+            if (cm.ReceiveResponse().operacion == "registrado")
             {
                 MessageBox.Show("Usuario registrado con exito", "Usuario Registrado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }

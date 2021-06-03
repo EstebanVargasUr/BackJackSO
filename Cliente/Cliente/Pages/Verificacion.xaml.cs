@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cliente.Conexion;
 
 namespace Cliente.Pages
 {
@@ -18,8 +19,7 @@ namespace Cliente.Pages
     /// </summary>
     public partial class Verificacion : Page
     {
-        Inicio ini = new Inicio();
-        Cliente cl = new Cliente();
+        Comunicacion cm = new Comunicacion();
         public Verificacion()
         {
             
@@ -40,11 +40,11 @@ namespace Cliente.Pages
         {
             
             Object[] enviar = {lbusuario.Text, lbContrasena.Text};
-            cl.SendRequest("login",enviar);
+            cm.SendRequest("login",enviar);
 
-            if(cl.ReceiveResponse().operacion == "actualizar" && cl.ReceiveResponse().jugadores != null)
+            if(cm.ReceiveResponse().operacion == "actualizar")
             {
-                
+                VariablesStaticas.nombreUsuario = lbusuario.Text;
                 NavigationService.Navigate(new MesaJuego());
             }
             else

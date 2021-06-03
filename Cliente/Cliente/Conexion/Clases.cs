@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cliente.Pages
+namespace Cliente.Conexion
 {
-    class Jugadores
+    public class Jugadores
     {
         public string usuario { get; set; }
         public int saldo { get; set; }
@@ -27,7 +27,7 @@ namespace Cliente.Pages
             cartas = new List<Cartas>();
         }
     }
-    class Juego
+    public class Juego
     {
         public List<Cartas> cartas { get; set; }
         public string turnoJugador { get; set; }
@@ -93,6 +93,7 @@ namespace Cliente.Pages
             {
                 puntuacionCrupier += x.valor;
             }
+
             foreach (Cartas x in jugador.cartas)
             {
                 puntuacionJugador += x.valor;
@@ -123,7 +124,7 @@ namespace Cliente.Pages
             return Ganador;
         }
     }
-    class Cartas
+    public class Cartas
     {
         public int caracter { get; set; } // 1 = A ... K = 13
         public int tipo { get; set; } // 1 = Corazones , 2 = Picas , 3 = Diamantes , 4 = Trebol
@@ -137,7 +138,7 @@ namespace Cliente.Pages
         }
     }
 
-    class Transferencia
+    public class Transferencia
     {
         public string operacion;
 

@@ -78,10 +78,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FuncionesDLL\FuncionesDLL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Icon.png" />
     <Resource Include="resources\100Chip.png" />
     <Resource Include="resources\200Chip.png" />

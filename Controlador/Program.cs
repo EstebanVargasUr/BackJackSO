@@ -235,10 +235,10 @@ namespace Controlador
                             puntuacionJugador += y.valor;
                         }
 
-                        if (puntuacionJugador >= 21)
+                       /* if (puntuacionJugador >= 21)
                         {
                             pasarTurno(deserialized);
-                        }
+                        }*/
                      
                         break;
                     }
@@ -296,7 +296,7 @@ namespace Controlador
                 {
                     if (ListJugadores.Count == 1)
                     {
-                        reiniciarPartida();
+                        //reiniciarPartida();
 
                         ListJugadores[0].cartas.Add(juego.cartas[0]);
                         juego.cartas.RemoveAt(0);

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Pipo\Desktop\Proyectos\C#\Cliente\Cliente\obj\Debug\netcoreapp3.1\
+C:\Users\Esteban-Vargas\Desktop\Cliente\Cliente\obj\Debug\netcoreapp3.1\
 Cliente
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\Pipo\Desktop\Proyectos\C#\Cliente\Cliente\App.xaml
+C:\Users\Esteban-Vargas\Desktop\Cliente\Cliente\App.xaml
 5-2017681444
 
-12701749244
-194-811913269
+13-1070375060
+193-822494935
 MainWindow.xaml;Pages\Inicio.xaml;Pages\MesaJuego.xaml;Pages\Registro.xaml;Pages\Verificacion.xaml;
 
-True
+False
 

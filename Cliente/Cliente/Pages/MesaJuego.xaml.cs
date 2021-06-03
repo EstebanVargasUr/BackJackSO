@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Cliente.Conexion;
 namespace Cliente.Pages
 {
     /// <summary>
@@ -22,29 +22,23 @@ namespace Cliente.Pages
         public static int dineroActual = 0;
         int apuesta = 0;
         bool init = false;
-        Cliente cl = new Cliente();
-        Jugadores prin = new Jugadores();
-        int us = 0;
-        private List<Jugadores> cartas = new List<Jugadores>();
+        Comunicacion cm = new Comunicacion();
+
         public MesaJuego()
         {
-            prin.usuario = "pipo";
+         
             InitializeComponent();
             lbApuesta.Text = apuesta.ToString() + "$";
             txtDinero.Content = dineroActual.ToString() + "$";
 
-            object[] sed = { "pipo" };
-            cl.SendRequest("pedir carta", sed);
-
+            /* object[] sed = { "pipo" };
+             cl.SendRequest("pedir carta", sed);*/
+            txtDinero.Content = VariablesStaticas.transferencia.jugadores[1].saldo.ToString();
             Thread th1 = new Thread(new ThreadStart(recibirDatos));
             th1.Start();
 
-            txtDinero.Content = dineroActual.ToString() + "$";
-            // dineroActual = cl.tr1.jugadores[1].saldo;
-
 
             /*
-
             Image im = new Image();
             im.Width = 100;
             im.Height = 110;
@@ -63,19 +57,19 @@ namespace Cliente.Pages
             */
         }
 
-
-
        
         private void recibirDatos()
         {
 
             while (true)
             {
-                if (cl.ReceiveResponse() != null)
+                if (cm.ReceiveResponse() != null)
                 {
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        txtDinero.Content = cl.ReceiveResponse().juego.cartas.Count.ToString();
+                        //SETEAR TODO LO GRAFICO AQUI
+                        txtDinero.Content = VariablesStaticas.transferencia.jugadores[1].saldo.ToString();
+                        
                     }));
                 }
             }
@@ -145,27 +139,18 @@ namespace Cliente.Pages
 
         private void btnPedir_Click(object sender, RoutedEventArgs e)
         {
+            //SOLO REALIZAR ACCION EN TURNO DEL JUGADOR
+            if(VariablesStaticas.transferencia.juego.turnoJugador == VariablesStaticas.nombreUsuario)
+            {
+                object[] sed = { VariablesStaticas.nombreUsuario };
+                cm.SendRequest("pedir carta", sed);
+            }
+            else
+            {
+                MessageBox.Show("No puede realizar esta acción porque no es su turno", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 
-
-
-            object[] sed= { "pipo"};
-            cl.SendRequest("pedir carta", sed);
-
-
-            txtDinero.Content = dineroActual.ToString() + "$";
-            //int tamanio = cl.ReceiveResponse().jugadores[0].cartas.Count;
-            //tamanio--;
-
-            //int valor = cl.ReceiveResponse()
-            //lbAux.Content = valor.ToString();
-            //rtas.Count;
-
-
-            //cartas.Add(cli.ReceiveResponse().jugadores[0]);
-            //int tipo = cartas[0].cartas[0].tipo;
-            //int tipo = cli.ReceiveResponse().jugadores[0].cartas[0].tipo;
-            //lbAux.Content = tipo.ToString();
-            //us++;
+            
             /*
             Image im = new Image();
             im.Width = 100;
@@ -175,13 +160,6 @@ namespace Cliente.Pages
             Canvas.SetTop(im, 0);
             cvCartas.Children.Add(im);
             */
-        }
-
-
-        public static void Actualizar()
-        {
-            //cl.ReceiveResponse();
-
         }
 
         private void btnPlantarse_Click(object sender, RoutedEventArgs e)

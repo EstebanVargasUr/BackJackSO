@@ -4,21 +4,20 @@ using System.Net;
 using System.Text;
 using System.ComponentModel;
 using System.Windows;
+using Newtonsoft.Json;
+using System.Threading;
 
-namespace Cliente.Pages
+namespace Cliente.Conexion
 {
-    class Cliente
-    {
 
+    class Comunicacion
+    {
         public static readonly Socket ClientSocket = new Socket
            (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         private const int PORT = 100;
 
-        private static string dirIp;
-
-
-        public bool ConnectToServer(string ip, int port)
+        public bool ConnectToServer(string ip)
         {
             int attempts = 0;
             bool pb = false;
@@ -28,27 +27,16 @@ namespace Cliente.Pages
                     attempts++;
                     Console.WriteLine("Connection attempt " + attempts);
                     // Change IPAddress.Loopback to a remote IP to connect to a remote host.
-                    ClientSocket.Connect(ip, port);
+                    ClientSocket.Connect(ip, PORT);
                     pb = true;
+
                 }
                 catch (SocketException)
                 {
                 pb = false;
                 }
 
-
             return pb;
-        }
-
-        public static void RequestLoop()
-        {
-            Console.WriteLine(@"<Type ""exit"" to properly disconnect client>");
-
-            while (true)
-            {
-                //SendRequest();
-                ReceiveResponse();
-            }
         }
 
         /// <summary>
@@ -62,16 +50,14 @@ namespace Cliente.Pages
             Environment.Exit(0);
         }
 
-        public void SendRequest(string text)
+        public void SendRequest(string accion,object[] datos)
         {
             //Console.Write("Send a request: ");
             //string request = Console.ReadLine();
-            SendString(text);
-
-            if (text.ToLower() == "exit")
-            {
-                Exit();
-            }
+            //string request = Console.ReadLine();
+            Transferencia a = new Transferencia(accion, datos,null,null);
+            string serialized = JsonConvert.SerializeObject(a);
+            SendString(serialized);
         }
 
         /// <summary>
@@ -83,15 +69,22 @@ namespace Cliente.Pages
             ClientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
         }
 
-        public static void ReceiveResponse()
+        public Transferencia ReceiveResponse()
         {
             var buffer = new byte[2048];
             int received = ClientSocket.Receive(buffer, SocketFlags.None);
-            if (received == 0) return;
+            if (received == 0)
+            {
+                return null;
+            }
             var data = new byte[received];
             Array.Copy(buffer, data, received);
             string text = Encoding.ASCII.GetString(data);
-            Console.WriteLine(text);
+            VariablesStaticas.transferencia = JsonConvert.DeserializeObject<Transferencia>(text);
+
+            return VariablesStaticas.transferencia;
         }
+
+   
     }
 }

@@ -12,7 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
 using System.Net;
-
+using Cliente.Conexion;
 
 using Cliente.Pages;
 
@@ -25,20 +25,17 @@ namespace Cliente.Pages
     public partial class Inicio : Page
     {
 
-        private const int PORT = 100;
-
-       Cliente cl = new Cliente();
+        Comunicacion cm = new Comunicacion();
 
         public Inicio()
         {
-          
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
           
-            if (cl.ConnectToServer(lbIp.Text, 100))
+            if (cm.ConnectToServer(lbIp.Text))
             {
 
                 NavigationService.Navigate(new Verificacion());
