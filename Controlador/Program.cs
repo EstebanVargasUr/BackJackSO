@@ -35,7 +35,7 @@ namespace Controlador
             {
                 if (deserialized.datos[0].ToString() == ListJugadores[i].usuario)
                 {
-                    if (i < ListJugadores.Count)
+                    if (i < ListJugadores.Count-1)
                     {
                         juego.turnoJugador = ListJugadores[i + 1].usuario;
                         updatateAllSockets();
@@ -45,6 +45,7 @@ namespace Controlador
                         juego.turnoJugador = ListJugadores[0].usuario;
 
                         finRonda();
+
                         updatateAllSockets();
 
                         Thread th1 = new Thread(new ThreadStart(reiniciarPartida));
@@ -57,7 +58,7 @@ namespace Controlador
         }
         private static void reiniciarPartida()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(6000);
 
             juego = new Juego();
             juego.CrearCartas();
@@ -67,6 +68,14 @@ namespace Controlador
                 x.cartas.Clear();
                 x.apuesta = 0;
             }
+            if (ListJugadores.Count > 1)
+            {
+                juego.turnoJugador = ListJugadores[1].usuario;
+            }
+            ListJugadores[0].cartas.Add(juego.cartas[0]);
+            juego.cartas.RemoveAt(0);
+            ListJugadores[0].cartas.Add(juego.cartas[0]);
+            juego.cartas.RemoveAt(0);
             updatateAllSockets();
         }
 
@@ -260,8 +269,8 @@ namespace Controlador
                 {
                     if (deserialized.datos[0].ToString() == x.usuario)
                     {
-                        x.apuesta = (int)deserialized.datos[1];
-                        x.saldo -= x.apuesta;
+                        x.apuesta += int.Parse(deserialized.datos[1].ToString());
+                        x.saldo -= int.Parse(deserialized.datos[1].ToString());
                     }
                 }
 
