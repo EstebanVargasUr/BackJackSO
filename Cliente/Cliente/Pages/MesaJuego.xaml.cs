@@ -22,13 +22,6 @@ namespace Cliente.Pages
         public static int dineroActual = 0;
         int apuesta = 0;
         bool init = false;
-        int cJugador0 = 0;
-        int cJugador1 = 0;
-        int cJugador2 = 0;
-        int cJugador3 = 0;
-        int cJugador4 = 0;
-        int cJugador5 = 0;
-        int cJugador6 = 0;
         int countJugadores = 1;
         Comunicacion cm = new Comunicacion();
 
@@ -46,24 +39,6 @@ namespace Cliente.Pages
             Thread th1 = new Thread(new ThreadStart(recibirDatos));
             th1.Start();
 
-
-            /*
-            Image im = new Image();
-            im.Width = 100;
-            im.Height = 110;
-            im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/101.bmp", UriKind.RelativeOrAbsolute));
-            Canvas.SetLeft(im, 0);
-            Canvas.SetTop(im, 0);
-            //cvCartas.Children.Add(im);
-
-            Image im2 = new Image();
-            im2.Width = 100;
-            im2.Height = 110;
-            im2.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/102.bmp", UriKind.RelativeOrAbsolute));
-            Canvas.SetLeft(im2, 30);
-            Canvas.SetTop(im2, 0);
-            //cvCartas.Children.Add(im2);
-            */
         }
 
        
@@ -84,43 +59,46 @@ namespace Cliente.Pages
                         {
                             if (x.usuario == VariablesStaticas.nombreUsuario)
                             {
-                                cargarCartasJugadores(cvCartas, cJugador0, x);
+                                cargarCartasJugadores(cvCartas, 0, x);
+                                lbDApuesta.Content = x.apuesta.ToString() + "$";
+                                txtDinero.Content = x.saldo.ToString() + "$";
                             }
                             else if (x.usuario == "crupier")
                             {
-
+                                lbNombreCrupier.Content = x.usuario;
+                                cargarCartasJugadores(crupier, 0, x);
                             }
                             else
                             {
                                 if (countJugadores == 1)
                                 {
                                     lbNombreJ1.Content = x.usuario;
-                                    cargarCartasJugadores(jugador1, cJugador1, x);
+                                    cargarCartasJugadores(jugador1, 0, x);
                                 }
                                 else if (countJugadores == 2)
                                 {
                                     lbNombreJ2.Content = x.usuario;
-                                    cargarCartasJugadores(jugador2, cJugador2, x);
+                                    cargarCartasJugadores(jugador2, 0, x);
                                 }
                                 else if (countJugadores == 3)
                                 {
                                     lbNombreJ3.Content = x.usuario;
-                                    cargarCartasJugadores(jugador3, cJugador3, x);
+                                    cargarCartasJugadores(jugador3, 0, x);
                                 }
                                 else if (countJugadores == 4)
                                 {
                                     lbNombreJ4.Content = x.usuario;
-                                    cargarCartasJugadores(jugador4, cJugador4, x);
+                                    cargarCartasJugadores(jugador4, 0, x);
                                 }
                                 else if (countJugadores == 5)
                                 {
                                     lbNombreJ5.Content = x.usuario;
-                                    cargarCartasJugadores(jugador5, cJugador5, x);
+                                    cargarCartasJugadores(jugador5, 0, x);
                                 }
                                 else if (countJugadores == 6)
                                 {
                                     lbNombreJ6.Content = x.usuario;
-                                    cargarCartasJugadores(jugador6, cJugador6, x);
+                                    cargarCartasJugadores(jugador6, 0, x);
                                 }
                                 countJugadores++;
                             }
@@ -135,7 +113,6 @@ namespace Cliente.Pages
         {
             int limite = x.cartas.Count;
             canvjugador.Children.Clear();
-            contJugador = 0;
             if (limite > 0)
             {
                 limite--;
@@ -172,22 +149,54 @@ namespace Cliente.Pages
         {
             if (!init)
             {
-                dineroActual -= 25;
-                apuesta += 25;
-                lbApuesta.Text = apuesta.ToString() + "$";
-                txtDinero.Content = dineroActual.ToString() + "$";
+
+                if (VariablesStaticas.transferencia.juego.turnoJugador == VariablesStaticas.nombreUsuario)
+                {
+
+                    foreach (Jugadores x in VariablesStaticas.transferencia.jugadores)
+                    {
+                        if (x.usuario == VariablesStaticas.nombreUsuario)
+                        {
+                            apuesta += 25;
+                            lbApuesta.Text = apuesta.ToString() + "$";
+                            object[] sed = { VariablesStaticas.nombreUsuario, 25 };
+                            cm.SendRequest("apuesta", sed);
+                        }
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("No puede realizar esta acción porque no es su turno", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
-            
         }
 
         private void btn50_Click_1(object sender, RoutedEventArgs e)
         {
             if (!init)
             {
-                dineroActual -= 50;
-                apuesta += 50;
-                lbApuesta.Text = apuesta.ToString() + "$";
-                txtDinero.Content = dineroActual.ToString() + "$";
+                if (VariablesStaticas.transferencia.juego.turnoJugador == VariablesStaticas.nombreUsuario)
+                {
+
+
+
+                    foreach (Jugadores x in VariablesStaticas.transferencia.jugadores)
+                    {
+                        if (x.usuario == VariablesStaticas.nombreUsuario)
+                        {
+                            apuesta += 50;
+                            lbApuesta.Text = apuesta.ToString() + "$";
+                            object[] sed = { VariablesStaticas.nombreUsuario, 50 };
+                            cm.SendRequest("apuesta", sed);
+                        }
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("No puede realizar esta acción porque no es su turno", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
                 
         }
