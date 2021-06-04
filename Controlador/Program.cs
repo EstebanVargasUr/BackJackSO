@@ -210,25 +210,8 @@ namespace Controlador
             Transferencia deserialized = JsonConvert.DeserializeObject<Transferencia>(text);
 
 
-            if (deserialized.operacion == "pedir cartas inicial")
+            if (deserialized.operacion == "pedir carta")
             {
-                /*EN PROCESO*/
-                foreach (Jugadores x in ListJugadores)
-                {
-                    if(deserialized.datos[0].ToString() == x.usuario)
-                    {
-                        x.cartas.Add(juego.cartas[0]);
-                        juego.cartas.RemoveAt(0);
-                        x.cartas.Add(juego.cartas[0]);
-                        juego.cartas.RemoveAt(0);
-                    }
-                }
-                
-            }
-
-            else if (deserialized.operacion == "pedir carta")
-            {
-                /*EN PRUEBA*/
                 foreach (Jugadores x in ListJugadores)
                 {
                     if (deserialized.datos[0].ToString() == x.usuario)
@@ -244,10 +227,10 @@ namespace Controlador
                             puntuacionJugador += y.valor;
                         }
 
-                       /* if (puntuacionJugador >= 21)
+                        if (puntuacionJugador >= 21)
                         {
                             pasarTurno(deserialized);
-                        }*/
+                        }
                      
                         break;
                     }
@@ -258,19 +241,21 @@ namespace Controlador
 
             else if (deserialized.operacion == "pasar turno")
             {
-                /*EN PRUEBA*/
                 pasarTurno(deserialized);
             }
 
             else if (deserialized.operacion == "apuesta")
             {
-                /*EN PRUEBA*/
                 foreach (Jugadores x in ListJugadores)
                 {
                     if (deserialized.datos[0].ToString() == x.usuario)
                     {
                         x.apuesta += int.Parse(deserialized.datos[1].ToString());
                         x.saldo -= int.Parse(deserialized.datos[1].ToString());
+                        x.cartas.Add(juego.cartas[0]);
+                        juego.cartas.RemoveAt(0);
+                        x.cartas.Add(juego.cartas[0]);
+                        juego.cartas.RemoveAt(0);
                     }
                 }
 
@@ -299,13 +284,12 @@ namespace Controlador
 
             else if (deserialized.operacion == "login")
             {
-                /*EN PRUEBA*/
                 Console.WriteLine(deserialized.datos[0].ToString()+" "+deserialized.datos[1].ToString());
                 if(Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
                 {
                     if (ListJugadores.Count == 1)
                     {
-                        //reiniciarPartida();
+                        reiniciarPartida();
 
                         ListJugadores[0].cartas.Add(juego.cartas[0]);
                         juego.cartas.RemoveAt(0);
@@ -329,8 +313,6 @@ namespace Controlador
                     current.Send(data);
                 }
                 
-
-                //updatateAllSockets();
             }
 
             else if (deserialized.operacion == "salir") // Client wants to exit gracefully
