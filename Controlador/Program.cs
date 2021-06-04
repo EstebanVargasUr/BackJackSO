@@ -175,10 +175,10 @@ namespace Controlador
 
             if(clientSockets.Count < 7)
             {
-                clientSockets.Add(socket);
-                socket.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, socket);
-                Console.WriteLine("Client connected, waiting for request...");
-                serverSocket.BeginAccept(AcceptCallback, null);
+                Thread thplayers = new Thread(new ParameterizedThreadStart(loadThreadPlayer));
+                thplayers.Start(socket);
+
+                
             }
             else
             {
@@ -186,6 +186,14 @@ namespace Controlador
             }
         }
 
+        private static void loadThreadPlayer(object obj)
+        {
+            Socket socket = (Socket)obj;
+            clientSockets.Add(socket);
+            socket.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, socket);
+            Console.WriteLine("Client connected, waiting for request...");
+            serverSocket.BeginAccept(AcceptCallback, null);
+        }
         private static void ReceiveCallback(IAsyncResult AR)
         {
             Socket current = (Socket)AR.AsyncState;
@@ -212,6 +220,7 @@ namespace Controlador
 
             if (deserialized.operacion == "pedir carta")
             {
+                bool band = false;
                 foreach (Jugadores x in ListJugadores)
                 {
                     if (deserialized.datos[0].ToString() == x.usuario)
@@ -230,13 +239,18 @@ namespace Controlador
                         if (puntuacionJugador >= 21)
                         {
                             pasarTurno(deserialized);
+                            band = true;
                         }
                      
                         break;
                     }
                 }
 
-                updatateAllSockets();
+                if (!band)
+                {
+                    updatateAllSockets();
+                }
+                
             }
 
             else if (deserialized.operacion == "pasar turno")
@@ -259,9 +273,7 @@ namespace Controlador
                     }
                 }
 
-                Transferencia tr = new Transferencia("actualizar", null, ListJugadores, juego);
-                byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
-                current.Send(data);
+                updatateAllSockets();
             }
 
             else if (deserialized.operacion == "registrarse")
@@ -289,7 +301,6 @@ namespace Controlador
                 {
                     if (ListJugadores.Count == 1)
                     {
-                        reiniciarPartida();
 
                         ListJugadores[0].cartas.Add(juego.cartas[0]);
                         juego.cartas.RemoveAt(0);
