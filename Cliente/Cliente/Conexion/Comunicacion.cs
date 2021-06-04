@@ -13,22 +13,21 @@ namespace Cliente.Conexion
 
     class Comunicacion
     {
-        public static readonly Socket ClientSocket = new Socket
+        public static readonly Socket clienteSocket = new Socket
            (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         private const int PORT = 100;
 
-        public bool ConnectToServer(string ip)
+        public bool conectarServer(string ip)
         {
-            int attempts = 0;
+            int intentos = 0;
             bool pb = false;
 
                 try
                 {
-                    attempts++;
-                    Console.WriteLine("Connection attempt " + attempts);
-                    // Change IPAddress.Loopback to a remote IP to connect to a remote host.
-                    ClientSocket.Connect(ip, PORT);
+                    intentos++;
+                    Console.WriteLine("Conexion establecida" + intentos);
+                    clienteSocket.Connect(ip, PORT);
                     pb = true;
 
                 }
@@ -40,43 +39,35 @@ namespace Cliente.Conexion
             return pb;
         }
 
-        /// <summary>
-        /// Close socket and exit program.
-        /// </summary>
-        public static void Exit()
+
+        public static void salir()
         {
-            SendString("exit"); // Tell the server we are exiting
-            ClientSocket.Shutdown(SocketShutdown.Both);
-            ClientSocket.Close();
+            enviarString("exit"); 
+            clienteSocket.Shutdown(SocketShutdown.Both);
+            clienteSocket.Close();
             Environment.Exit(0);
         }
 
-        public void SendRequest(string accion,object[] datos)
+        public void enviarPeticion(string accion,object[] datos)
         {
-            //Console.Write("Send a request: ");
-            //string request = Console.ReadLine();
-            //string request = Console.ReadLine();
             Transferencia a = new Transferencia(accion, datos,null,null);
             string serialized = JsonConvert.SerializeObject(a);
-            SendString(serialized);
+            enviarString(serialized);
         }
 
-        /// <summary>
-        /// Sends a string to the server with ASCII encoding.
-        /// </summary>
-        public static void SendString(string text)
+        public static void enviarString(string text)
         {
             byte[] buffer = Encoding.ASCII.GetBytes(text);
-            ClientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
+            clienteSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
         }
 
-        public Transferencia ReceiveResponse()
+        public Transferencia resivirRespuesta()
         {
 
             try
             {
                 var buffer = new byte[8192];
-                int received = ClientSocket.Receive(buffer, SocketFlags.None);
+                int received = clienteSocket.Receive(buffer, SocketFlags.None);
                 if (received == 0)
                 {
                     return null;
@@ -88,7 +79,7 @@ namespace Cliente.Conexion
             }
             catch (FileNotFoundException e)
             {
-                Console.WriteLine($"The file was not found: '{e}'");
+                Console.WriteLine($"El archivo no se encontro: '{e}'");
             }
 
             return VariablesStaticas.transferencia;

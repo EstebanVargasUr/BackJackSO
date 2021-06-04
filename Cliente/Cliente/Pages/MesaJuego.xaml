@@ -55,7 +55,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <StackPanel x:Name="frameApuesta" Margin="445,220,417,356" Background="#FF314252" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Visible" Grid.ColumnSpan="2">
+        <StackPanel x:Name="frameApuesta" Margin="445,220,417,356" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Hidden" Grid.ColumnSpan="2" Background="#FF314252">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -67,7 +67,7 @@
             <Label x:Name="textApuesta" Content="Apuesta" Height="51" Width="166" FontSize="36" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" Background="{x:Null}" FontFamily="Cooper Black" Foreground="White"/>
             <Label x:Name="ingresarIp" Content="Ingrese el monto a apostar" Foreground="White" HorizontalAlignment="Center" FontSize="18" Width="218" Margin="0,20,0,0" Height="35"/>
             <TextBox x:Name="lbApuesta" Text="TextBox" TextWrapping="Wrap" Width="128" Background="{x:Null}" Foreground="White" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Height="25" FontSize="18"/>
-            <Button x:Name="btnApostar" Content="Empezar" Width="169" Background="Black" Foreground="White" Height="34" Click="btnApostar_Click" FontSize="20" Margin="0,15,0,0"/>
+            <Button x:Name="btnApostar" Content="Empezar" Width="170" Background="Black" Foreground="White" Height="34" Click="btnApostar_Click" FontSize="20" Margin="0,10,0,0"/>
         </StackPanel>
         <Canvas x:Name="cvCartas" Grid.ColumnSpan="2" Margin="533,486,410,0" VerticalAlignment="Top" Height="98"/>
         <Button x:Name="btnPedir" Content="Pedir" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="662,649,0,0" VerticalAlignment="Top" Height="62" Width="72" Foreground="White" Background="Black" Click="btnPedir_Click"/>

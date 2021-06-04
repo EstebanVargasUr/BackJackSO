@@ -35,7 +35,7 @@ namespace Cliente.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
           
-            if (cm.ConnectToServer(lbIp.Text))
+            if (cm.conectarServer(lbIp.Text))
             {
 
                 NavigationService.Navigate(new Verificacion());

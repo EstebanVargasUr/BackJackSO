@@ -23,6 +23,7 @@ namespace Cliente.Pages
         int apuesta = 0;
         bool init = false;
         int countJugadores = 1;
+        bool cCrupier = false;
         Comunicacion cm = new Comunicacion();
 
         public MesaJuego()
@@ -33,11 +34,21 @@ namespace Cliente.Pages
             txtDinero.Content = dineroActual.ToString() + "$";
             txtNombre.Content = VariablesStaticas.nombreUsuario;
             lbTurnoJugador.Content = VariablesStaticas.transferencia.juego.turnoJugador;
-            /* object[] sed = { "pipo" };
-             cl.SendRequest("pedir carta", sed);*/
             txtDinero.Content = VariablesStaticas.transferencia.jugadores[1].saldo.ToString();
+            foreach (Jugadores x in VariablesStaticas.transferencia.jugadores)
+            {
+                if (VariablesStaticas.nombreUsuario == VariablesStaticas.transferencia.juego.turnoJugador && x.cartas.Count <= 0)
+                {
+
+                    frameApuesta.Visibility = Visibility.Visible;
+                    btnApostar.Visibility = Visibility.Visible;
+                }
+            }
+
+               
             Thread th1 = new Thread(new ThreadStart(recibirDatos));
             th1.Start();
+
 
         }
 
@@ -47,7 +58,7 @@ namespace Cliente.Pages
 
             while (true)
             {
-                if (cm.ReceiveResponse() != null)
+                if (cm.resivirRespuesta() != null)
                 {
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
@@ -62,9 +73,23 @@ namespace Cliente.Pages
                                 cargarCartasJugadores(cvCartas, 0, x);
                                 lbDApuesta.Content = x.apuesta.ToString() + "$";
                                 txtDinero.Content = x.saldo.ToString() + "$";
-                            }
+                                if (VariablesStaticas.nombreUsuario == VariablesStaticas.transferencia.juego.turnoJugador && x.cartas.Count <= 0)
+                                {
+                                    frameApuesta.Visibility = Visibility.Visible;
+                                    btnApostar.Visibility = Visibility.Visible;
+                                }
+                             }
                             else if (x.usuario == "crupier")
                             {
+                                if(VariablesStaticas.transferencia.juego.turnoJugador == "crupier")
+                                {
+                                    cCrupier = true;
+                                    init = false;
+                                }
+                                else
+                                {
+                                    cCrupier = false;
+                                }
                                 lbNombreCrupier.Content = x.usuario;
                                 cargarCartasJugadores(crupier, 0, x);
                             }
@@ -121,7 +146,16 @@ namespace Cliente.Pages
                     Image im = new Image();
                     im.Width = 70;
                     im.Height = 80;
-                    im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/" + c.caracter + c.tipo + ".bmp", UriKind.RelativeOrAbsolute));
+                    if(x.usuario == "crupier" && cCrupier == false)
+                    {
+                        im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/det1.bmp", UriKind.RelativeOrAbsolute));
+                        cCrupier = true;
+                    }
+                    else
+                    {
+                        im.Source = new BitmapImage(new Uri("pack://application:,,,/Cliente;component/resources/Cartas/" + c.caracter + c.tipo + ".bmp", UriKind.RelativeOrAbsolute));
+                    }
+
                     Canvas.SetLeft(im, contJugador);
                     Canvas.SetTop(im, 0);
                     contJugador += 30;
@@ -134,6 +168,8 @@ namespace Cliente.Pages
         {
             if(apuesta > 0)
             {
+                object[] sed = { VariablesStaticas.nombreUsuario, apuesta};
+                cm.enviarPeticion("apuesta", sed);
                 frameApuesta.Visibility = Visibility.Hidden;
                 btnApostar.Visibility = Visibility.Hidden;
                 init = true;
@@ -150,25 +186,9 @@ namespace Cliente.Pages
             if (!init)
             {
 
-                if (VariablesStaticas.transferencia.juego.turnoJugador == VariablesStaticas.nombreUsuario)
-                {
+                apuesta += 25;
+                lbApuesta.Text = apuesta.ToString() + "$";
 
-                    foreach (Jugadores x in VariablesStaticas.transferencia.jugadores)
-                    {
-                        if (x.usuario == VariablesStaticas.nombreUsuario)
-                        {
-                            apuesta += 25;
-                            lbApuesta.Text = apuesta.ToString() + "$";
-                            object[] sed = { VariablesStaticas.nombreUsuario, 25 };
-                            cm.SendRequest("apuesta", sed);
-                        }
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("No puede realizar esta acción porque no es su turno", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
             }
         }
 
@@ -176,73 +196,76 @@ namespace Cliente.Pages
         {
             if (!init)
             {
-                if (VariablesStaticas.transferencia.juego.turnoJugador == VariablesStaticas.nombreUsuario)
-                {
 
+                apuesta += 50;
+                lbApuesta.Text = apuesta.ToString() + "$";
 
-
-                    foreach (Jugadores x in VariablesStaticas.transferencia.jugadores)
-                    {
-                        if (x.usuario == VariablesStaticas.nombreUsuario)
-                        {
-                            apuesta += 50;
-                            lbApuesta.Text = apuesta.ToString() + "$";
-                            object[] sed = { VariablesStaticas.nombreUsuario, 50 };
-                            cm.SendRequest("apuesta", sed);
-                        }
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("No puede realizar esta acción porque no es su turno", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
             }
-                
+
         }
 
         private void btn100_Click_1(object sender, RoutedEventArgs e)
         {
             if (!init)
-            {
-                dineroActual -= 100;
-                apuesta += 100;
-                lbApuesta.Text = apuesta.ToString() + "$";
-                txtDinero.Content = dineroActual.ToString() + "$";
+            { 
+
+             apuesta += 100;
+             lbApuesta.Text = apuesta.ToString() + "$";
+
             }
-                
+
         }
 
         private void btn200_Click_1(object sender, RoutedEventArgs e)
         {
             if (!init)
             {
-                dineroActual -= 200;
+
                 apuesta += 200;
                 lbApuesta.Text = apuesta.ToString() + "$";
-                txtDinero.Content = dineroActual.ToString() + "$";
-            }    
+
+            }
         }
 
         private void btnPedir_Click(object sender, RoutedEventArgs e)
         {
             //SOLO REALIZAR ACCION EN TURNO DEL JUGADOR
-            if(VariablesStaticas.transferencia.juego.turnoJugador == VariablesStaticas.nombreUsuario)
+
+            if (init)
             {
-                object[] sed = { VariablesStaticas.nombreUsuario };
-                cm.SendRequest("pedir carta", sed);
+                if (VariablesStaticas.transferencia.juego.turnoJugador == VariablesStaticas.nombreUsuario)
+                {
+                    object[] sed = { VariablesStaticas.nombreUsuario };
+                    cm.enviarPeticion("pedir carta", sed);
+                }
+                else
+                {
+                    MessageBox.Show("No puede realizar esta acción porque no es su turno", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             else
             {
-                MessageBox.Show("No puede realizar esta acción porque no es su turno", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No puede pedir cartas antes de hacer una apuesta", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            
 
         }
 
         private void btnPlantarse_Click(object sender, RoutedEventArgs e)
         {
-            object[] sed = { VariablesStaticas.nombreUsuario };
-            cm.SendRequest("pasar turno", sed);
+            if (init)
+            {
+
+                object[] sed = { VariablesStaticas.nombreUsuario };
+                cm.enviarPeticion("pasar turno", sed);
+
+
+            }
+            else
+            {
+                MessageBox.Show("No puede pedir cartas antes de hacer una apuesta", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+               
         }
     }
 }

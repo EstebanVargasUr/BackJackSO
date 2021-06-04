@@ -44,10 +44,10 @@ namespace Cliente.Pages
         {
             
             Object[] enviar = { lbusuarioR.Text, lbContrasenaR.Text};
-            cm.SendRequest("registrarse", enviar);
+            cm.enviarPeticion("registrarse", enviar);
 
 
-            if (cm.ReceiveResponse().operacion == "registrado")
+            if (cm.resivirRespuesta().operacion == "registrado")
             {
                 MessageBox.Show("Usuario registrado con exito", "Usuario Registrado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }

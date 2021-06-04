@@ -40,9 +40,9 @@ namespace Cliente.Pages
         {
             
             Object[] enviar = {lbusuario.Text, lbContrasena.Text};
-            cm.SendRequest("login",enviar);
+            cm.enviarPeticion("login",enviar);
 
-            if(cm.ReceiveResponse().operacion == "actualizar")
+            if(cm.resivirRespuesta().operacion == "actualizar")
             {
                 VariablesStaticas.nombreUsuario = lbusuario.Text;
                 NavigationService.Navigate(new MesaJuego());
