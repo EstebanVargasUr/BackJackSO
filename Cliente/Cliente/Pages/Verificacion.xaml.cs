@@ -53,7 +53,7 @@ namespace Cliente.Pages
             }
             else if (respuesta == "en cola")
             {
-                MessageBox.Show("Se espicho tere", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Limite de jugadores alcanzado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
