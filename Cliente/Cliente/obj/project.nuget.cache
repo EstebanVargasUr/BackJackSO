@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZopUhTW5LJs3ufgQFYwrE2IqijHK44oSiiyd4JT9Y/82IIptC4Cd+6WMm5awGLWNzA1NyDqtBy4KJ2xx+kRdNw==",
+  "dgSpecHash": "ILsE9hvADIrkXNiyQTd4luehALi/tHMir8RYccCTRKzN4r6X1vlvHIVIVoo7Kbi3HSq4Rnd8ZvJW++Ql8/kGGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\Pruebas\\Cliente\\Cliente\\Cliente.csproj",
+  "projectFilePath": "C:\\Users\\Pipo\\Desktop\\Proyectos\\C#\\BackJackSO\\Cliente\\Cliente\\Cliente.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pipo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],

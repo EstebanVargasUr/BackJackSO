@@ -20,6 +20,7 @@ namespace Cliente.Conexion
 
         public bool conectarServer(string ip)
         {
+
             int intentos = 0;
             bool pb = false;
 
