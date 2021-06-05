@@ -10,7 +10,8 @@
     <Grid x:Name="Mesa_Juego" Width="1200" Height="768" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="301*"/>
+            <ColumnDefinition Width="99*"/>
         </Grid.ColumnDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/resources/Mesa.png"/>
@@ -55,7 +56,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <StackPanel x:Name="frameApuesta" Margin="445,220,417,356" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Hidden" Grid.ColumnSpan="2" Background="#FF314252">
+        <StackPanel x:Name="frameApuesta" Margin="445,220,120,356" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Visibility="Hidden" Grid.ColumnSpan="2" Background="#FF314252">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -69,10 +70,10 @@
             <TextBox x:Name="lbApuesta" Text="TextBox" TextWrapping="Wrap" Width="128" Background="{x:Null}" Foreground="White" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Height="25" FontSize="18"/>
             <Button x:Name="btnApostar" Content="Empezar" Width="170" Background="Black" Foreground="White" Height="34" Click="btnApostar_Click" FontSize="20" Margin="0,10,0,0"/>
         </StackPanel>
-        <Canvas x:Name="cvCartas" Grid.ColumnSpan="2" Margin="533,486,410,0" VerticalAlignment="Top" Height="98"/>
-        <Button x:Name="btnPedir" Content="Pedir" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="662,649,0,0" VerticalAlignment="Top" Height="62" Width="72" Foreground="White" Background="Black" Click="btnPedir_Click"/>
-        <Button x:Name="btnPlantarse" Content="Quedarse" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="760,649,0,0" VerticalAlignment="Top" Height="62" Width="74" Background="Black" Foreground="White" Click="btnPlantarse_Click"/>
-        <Canvas x:Name="jugador1" Grid.ColumnSpan="2" Margin="175,488,884,210" Width="141" Height="70" RenderTransformOrigin="0.5,0.5">
+        <Canvas x:Name="cvCartas" Grid.ColumnSpan="2" Margin="533,486,113,0" VerticalAlignment="Top" Height="98"/>
+        <Button x:Name="btnPedir" Content="" HorizontalAlignment="Left" Margin="571,653,0,0" VerticalAlignment="Top" Height="62" Width="77" Foreground="Black" Background="{x:Null}" Click="btnPedir_Click" Grid.Column="1" FontSize="20"/>
+        <Button x:Name="btnPlantarse" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="656,653,0,0" VerticalAlignment="Top" Height="62" Width="78" Background="{x:Null}" Foreground="White" Click="btnPlantarse_Click"/>
+        <Canvas x:Name="jugador1" Grid.ColumnSpan="2" Margin="175,488,587,210" Width="141" Height="70" RenderTransformOrigin="0.5,0.5">
             <Canvas.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -82,7 +83,7 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
         </Canvas>
-        <Canvas x:Name="jugador2" Grid.ColumnSpan="2" Margin="24,311,1034,387" Width="141" Height="70" RenderTransformOrigin="0.5,0.5">
+        <Canvas x:Name="jugador2" Grid.ColumnSpan="2" Margin="24,311,737,387" Width="141" Height="70" RenderTransformOrigin="0.5,0.5">
             <Canvas.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -92,7 +93,7 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
         </Canvas>
-        <Canvas x:Name="jugador3" Grid.ColumnSpan="2" Width="141" Height="70" Margin="186,129,873,569" RenderTransformOrigin="0.5,0.5">
+        <Canvas x:Name="jugador3" Grid.ColumnSpan="2" Width="141" Height="70" Margin="186,129,576,569" RenderTransformOrigin="0.5,0.5">
             <Canvas.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -102,7 +103,7 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
         </Canvas>
-        <Canvas x:Name="jugador4" Grid.ColumnSpan="2" Width="141" Height="70" Margin="833,136,226,562" RenderTransformOrigin="0.5,0.5">
+        <Canvas x:Name="jugador4" Grid.ColumnSpan="3" Width="141" Height="70" Margin="833,136,226,562" RenderTransformOrigin="0.5,0.5">
             <Canvas.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -112,7 +113,7 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
         </Canvas>
-        <Canvas x:Name="jugador5" Grid.ColumnSpan="2" Width="141" Height="70" Margin="999,300,60,398" RenderTransformOrigin="0.5,0.5">
+        <Canvas x:Name="jugador5" Width="141" Height="70" Margin="96,300,60,398" RenderTransformOrigin="0.5,0.5" Grid.Column="2">
             <Canvas.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -122,7 +123,7 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
         </Canvas>
-        <Canvas x:Name="jugador6" Grid.ColumnSpan="2" Width="141" Height="70" Margin="868,479,190,219" RenderTransformOrigin="0.5,0.5">
+        <Canvas x:Name="jugador6" Grid.ColumnSpan="3" Width="141" Height="70" Margin="868,479,190,219" RenderTransformOrigin="0.5,0.5">
             <Canvas.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -133,7 +134,7 @@
             </Canvas.RenderTransform>
         </Canvas>
         <Label x:Name="lbAux" Content="Turno de:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="332,668,0,0" VerticalAlignment="Top" Width="118" FontSize="20" Foreground="White" FontFamily="Cooper Black"/>
-        <Label x:Name="lbTurnoJugador" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="447,668,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" FontFamily="Cooper Black"/>
+        <Label x:Name="lbTurnoJugador" Content="" HorizontalAlignment="Left" Margin="450,668,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" FontFamily="Cooper Black" Grid.Column="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Width="94"/>
         <Label x:Name="lbNombreJ1" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="208,450,0,0" VerticalAlignment="Top" Foreground="White" FontSize="22" RenderTransformOrigin="0.5,0.5" Width="133" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -164,7 +165,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="lbNombreJ4" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="809,201,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White" FontSize="22" Width="140">
+        <Label x:Name="lbNombreJ4" Content="" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="809,201,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White" FontSize="22" Width="140">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -174,7 +175,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="lbNombreJ5" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="944,316,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Foreground="White" FontSize="22" HorizontalContentAlignment="Center" Width="140" VerticalContentAlignment="Center">
+        <Label x:Name="lbNombreJ5" Content="" HorizontalAlignment="Left" Margin="41,316,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Foreground="White" FontSize="22" HorizontalContentAlignment="Center" Width="140" VerticalContentAlignment="Center" Grid.Column="2">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -184,7 +185,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="lbNombreJ6" Content="" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="841,446,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="22" RenderTransformOrigin="0.5,0.5" Width="141">
+        <Label x:Name="lbNombreJ6" Content="" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="841,446,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontSize="22" RenderTransformOrigin="0.5,0.5" Width="141">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -194,12 +195,13 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Canvas x:Name="crupier" Grid.ColumnSpan="2" Margin="530,110,530,588" Width="141" Height="70"/>
-        <Label x:Name="lbNombreCrupier" Content="" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" Grid.Column="1" Foreground="White" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="142"/>
+        <Canvas x:Name="crupier" Grid.ColumnSpan="2" Margin="530,110,232,588" Width="141" Height="70"/>
+        <Label x:Name="lbNombreCrupier" Content="" HorizontalAlignment="Left" Margin="529,180,0,0" VerticalAlignment="Top" Grid.Column="1" Foreground="White" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="142"/>
         <Label x:Name="lbDApuesta" Content="0$" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="256,61,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontFamily="Cooper Black" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="{x:Null}" Width="62"/>
         <Label Content="Jugador:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="176,13,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Cooper Black" FontSize="16"/>
         <Label Content="Saldo:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="176,37,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Cooper Black" FontSize="16"/>
         <Label Content="Apuesta:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="176,61,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Cooper Black" FontSize="16"/>
+        <Button x:Name="btSalir" Content="Salir" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="49,29,0,0" VerticalAlignment="Top" Height="52" Width="83" Background="#FFCB2B2B" Foreground="White" FontFamily="Cooper Black" FontSize="16" Click="btSalir_Click"/>
 
     </Grid>
 </Page>

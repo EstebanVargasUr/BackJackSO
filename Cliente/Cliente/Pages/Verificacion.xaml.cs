@@ -42,10 +42,18 @@ namespace Cliente.Pages
             Object[] enviar = {lbusuario.Text, lbContrasena.Text};
             cm.enviarPeticion("login",enviar);
 
-            if(cm.resivirRespuesta().operacion == "actualizar")
+
+            string respuesta = cm.resivirRespuesta().operacion;
+
+            if (respuesta == "actualizar")
             {
+
                 VariablesStaticas.nombreUsuario = lbusuario.Text;
                 NavigationService.Navigate(new MesaJuego());
+            }
+            else if (respuesta == "en cola")
+            {
+                MessageBox.Show("Se espicho tere", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {

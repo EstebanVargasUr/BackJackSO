@@ -20,6 +20,7 @@ namespace Cliente.Pages
     public partial class MesaJuego : Page
     {
         public static int dineroActual = 0;
+        public int dinero;
         int apuesta = 0;
         bool init = false;
         int countJugadores = 1;
@@ -35,24 +36,31 @@ namespace Cliente.Pages
             txtNombre.Content = VariablesStaticas.nombreUsuario;
             lbTurnoJugador.Content = VariablesStaticas.transferencia.juego.turnoJugador;
             txtDinero.Content = VariablesStaticas.transferencia.jugadores[1].saldo.ToString();
+            
             foreach (Jugadores x in VariablesStaticas.transferencia.jugadores)
             {
                 if (VariablesStaticas.nombreUsuario == VariablesStaticas.transferencia.juego.turnoJugador && x.cartas.Count <= 0)
                 {
-
+                    lbApuesta.Text = 0+ "$";
+                    apuesta = 0;
                     frameApuesta.Visibility = Visibility.Visible;
                     btnApostar.Visibility = Visibility.Visible;
                 }
             }
 
-               
+
+            actualizar();
+
             Thread th1 = new Thread(new ThreadStart(recibirDatos));
             th1.Start();
 
 
         }
 
-       
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            //Put your close code here
+        }
         private void recibirDatos()
         {
 
@@ -62,78 +70,84 @@ namespace Cliente.Pages
                 {
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        //SETEAR TODO LO GRAFICO AQUI
-                        //txtDinero.Content = VariablesStaticas.transferencia.jugadores[1].saldo.ToString();
-                        lbTurnoJugador.Content = VariablesStaticas.transferencia.juego.turnoJugador;
-                        countJugadores = 1; 
-                        foreach(Jugadores x in VariablesStaticas.transferencia.jugadores)
-                        {
-                            if (x.usuario == VariablesStaticas.nombreUsuario)
-                            {
-                                cargarCartasJugadores(cvCartas, 0, x);
-                                lbDApuesta.Content = x.apuesta.ToString() + "$";
-                                txtDinero.Content = x.saldo.ToString() + "$";
-                                if (VariablesStaticas.nombreUsuario == VariablesStaticas.transferencia.juego.turnoJugador && x.cartas.Count <= 0)
-                                {
-                                    frameApuesta.Visibility = Visibility.Visible;
-                                    btnApostar.Visibility = Visibility.Visible;
-                                }
-                             }
-                            else if (x.usuario == "crupier")
-                            {
-                                if(VariablesStaticas.transferencia.juego.turnoJugador == "crupier")
-                                {
-                                    cCrupier = true;
-                                    init = false;
-                                }
-                                else
-                                {
-                                    cCrupier = false;
-                                }
-                                lbNombreCrupier.Content = x.usuario;
-                                cargarCartasJugadores(crupier, 0, x);
-                            }
-                            else
-                            {
-                                if (countJugadores == 1)
-                                {
-                                    lbNombreJ1.Content = x.usuario;
-                                    cargarCartasJugadores(jugador1, 0, x);
-                                }
-                                else if (countJugadores == 2)
-                                {
-                                    lbNombreJ2.Content = x.usuario;
-                                    cargarCartasJugadores(jugador2, 0, x);
-                                }
-                                else if (countJugadores == 3)
-                                {
-                                    lbNombreJ3.Content = x.usuario;
-                                    cargarCartasJugadores(jugador3, 0, x);
-                                }
-                                else if (countJugadores == 4)
-                                {
-                                    lbNombreJ4.Content = x.usuario;
-                                    cargarCartasJugadores(jugador4, 0, x);
-                                }
-                                else if (countJugadores == 5)
-                                {
-                                    lbNombreJ5.Content = x.usuario;
-                                    cargarCartasJugadores(jugador5, 0, x);
-                                }
-                                else if (countJugadores == 6)
-                                {
-                                    lbNombreJ6.Content = x.usuario;
-                                    cargarCartasJugadores(jugador6, 0, x);
-                                }
-                                countJugadores++;
-                            }
-                        }
+                        actualizar();
 
                     }));
                 }
             }
         }
 
+
+        private void actualizar()
+        {
+            lbTurnoJugador.Content = VariablesStaticas.transferencia.juego.turnoJugador;
+            countJugadores = 1;
+            foreach (Jugadores x in VariablesStaticas.transferencia.jugadores)
+            {
+                if (x.usuario == VariablesStaticas.nombreUsuario)
+                {
+                    cargarCartasJugadores(cvCartas, 0, x);
+                    lbDApuesta.Content = x.apuesta.ToString() + "$";
+                    txtDinero.Content = x.saldo.ToString() + "$";
+                    dinero = x.saldo;
+                    if (VariablesStaticas.nombreUsuario == VariablesStaticas.transferencia.juego.turnoJugador && x.cartas.Count <= 0)
+                    {
+                        lbApuesta.Text = 0 + "$";
+                        apuesta = 0;
+                        frameApuesta.Visibility = Visibility.Visible;
+                        btnApostar.Visibility = Visibility.Visible;
+                    }
+                }
+                else if (x.usuario == "crupier")
+                {
+                    if (VariablesStaticas.transferencia.juego.turnoJugador == "crupier")
+                    {
+                        cCrupier = true;
+                        init = false;
+                    }
+                    else
+                    {
+                        cCrupier = false;
+                    }
+                    lbNombreCrupier.Content = x.usuario;
+                    cargarCartasJugadores(crupier, 0, x);
+                }
+                else
+                {
+                    if (countJugadores == 1)
+                    {
+                        lbNombreJ1.Content = x.usuario;
+                        cargarCartasJugadores(jugador1, 0, x);
+                    }
+                    else if (countJugadores == 2)
+                    {
+                        lbNombreJ2.Content = x.usuario;
+                        cargarCartasJugadores(jugador2, 0, x);
+                    }
+                    else if (countJugadores == 3)
+                    {
+                        lbNombreJ3.Content = x.usuario;
+                        cargarCartasJugadores(jugador3, 0, x);
+                    }
+                    else if (countJugadores == 4)
+                    {
+                        lbNombreJ4.Content = x.usuario;
+                        cargarCartasJugadores(jugador4, 0, x);
+                    }
+                    else if (countJugadores == 5)
+                    {
+                        lbNombreJ5.Content = x.usuario;
+                        cargarCartasJugadores(jugador5, 0, x);
+                    }
+                    else if (countJugadores == 6)
+                    {
+                        lbNombreJ6.Content = x.usuario;
+                        cargarCartasJugadores(jugador6, 0, x);
+                    }
+                    countJugadores++;
+                }
+            }
+        }
         private void cargarCartasJugadores(Canvas canvjugador, int contJugador, Jugadores x)
         {
             int limite = x.cartas.Count;
@@ -185,10 +199,11 @@ namespace Cliente.Pages
         {
             if (!init)
             {
-
-                apuesta += 25;
-                lbApuesta.Text = apuesta.ToString() + "$";
-
+                if (apuesta + 25 <= dinero)
+                {
+                    apuesta += 25;
+                    lbApuesta.Text = apuesta.ToString() + "$";
+                }
             }
         }
 
@@ -196,10 +211,11 @@ namespace Cliente.Pages
         {
             if (!init)
             {
-
-                apuesta += 50;
-                lbApuesta.Text = apuesta.ToString() + "$";
-
+                if (apuesta + 50 <= dinero)
+                {
+                    apuesta += 50;
+                    lbApuesta.Text = apuesta.ToString() + "$";
+                }    
             }
 
         }
@@ -207,10 +223,14 @@ namespace Cliente.Pages
         private void btn100_Click_1(object sender, RoutedEventArgs e)
         {
             if (!init)
-            { 
-
-             apuesta += 100;
-             lbApuesta.Text = apuesta.ToString() + "$";
+            {
+                int da = apuesta;
+                if (apuesta + 100 <= dinero)
+                {
+                    apuesta += 100;
+                    lbApuesta.Text = apuesta.ToString() + "$";
+                }
+                    
 
             }
 
@@ -220,10 +240,12 @@ namespace Cliente.Pages
         {
             if (!init)
             {
-
-                apuesta += 200;
-                lbApuesta.Text = apuesta.ToString() + "$";
-
+                int da = apuesta;
+                if (apuesta+200 <= dinero)
+                {
+                    apuesta += 200;
+                    lbApuesta.Text = apuesta.ToString() + "$";
+                }
             }
         }
 
@@ -266,6 +288,13 @@ namespace Cliente.Pages
                 MessageBox.Show("No puede pedir cartas antes de hacer una apuesta", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Information);
             }
                
+        }
+
+        private void btSalir_Click(object sender, RoutedEventArgs e)
+        {
+            object[] sed = { VariablesStaticas.nombreUsuario };
+            cm.enviarPeticion("salir", sed);
+            NavigationService.Navigate(new Inicio());
         }
     }
 }

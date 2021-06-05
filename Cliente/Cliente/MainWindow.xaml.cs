@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cliente.Conexion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace Cliente
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        Comunicacion cm = new Comunicacion();
         public MainWindow()
         {
-            InitializeComponent();
+            this.Closed += new EventHandler(MainWindow_Closed);
+        }
+
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            if (VariablesStaticas.nombreUsuario != null || VariablesStaticas.nombreUsuario != "")
+            {
+                object[] sed = { VariablesStaticas.nombreUsuario };
+                cm.enviarPeticion("salir", sed);
+            }
             
         }
 

@@ -20,7 +20,6 @@ namespace Cliente.Conexion
 
         public bool conectarServer(string ip)
         {
-
             int intentos = 0;
             bool pb = false;
 
@@ -77,13 +76,17 @@ namespace Cliente.Conexion
                 Array.Copy(buffer, data, received);
                 string text = Encoding.ASCII.GetString(data);
                 VariablesStaticas.transferencia = JsonConvert.DeserializeObject<Transferencia>(text);
+
+
+                return VariablesStaticas.transferencia;
+
             }
             catch (FileNotFoundException e)
             {
                 Console.WriteLine($"El archivo no se encontro: '{e}'");
+                return null;
             }
 
-            return VariablesStaticas.transferencia;
         }
 
    
