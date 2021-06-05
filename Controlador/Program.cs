@@ -19,6 +19,7 @@ namespace Controlador
         private static readonly byte[] buffer = new byte[BUFFER_SIZE];
         private static Juego juego = new Juego();
         private static List<Jugadores> ListJugadores = new List<Jugadores>();
+        private static List<Jugadores> ListJugadoresEspera = new List<Jugadores>();
 
         static void Main()
         {
@@ -115,8 +116,6 @@ namespace Controlador
                     }
                 }
             }
-            
-            
 
         }
         private static void SetupServer()
@@ -173,17 +172,9 @@ namespace Controlador
                 return;
             }
 
-            if(clientSockets.Count < 7)
-            {
-                Thread thplayers = new Thread(new ParameterizedThreadStart(loadThreadPlayer));
-                thplayers.Start(socket);
+            Thread thplayers = new Thread(new ParameterizedThreadStart(loadThreadPlayer));
+            thplayers.Start(socket);
 
-                
-            }
-            else
-            {
-                //AGREGAR EN COLA DE ESPERA
-            }
         }
 
         private static void loadThreadPlayer(object obj)
@@ -296,12 +287,11 @@ namespace Controlador
 
             else if (deserialized.operacion == "login")
             {
-                Console.WriteLine(deserialized.datos[0].ToString()+" "+deserialized.datos[1].ToString());
-                if(Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
+                Console.WriteLine(deserialized.datos[0].ToString());
+                if (Funciones.UsuariosFunciones.auth(deserialized.datos[0].ToString(), deserialized.datos[1].ToString()))
                 {
                     if (ListJugadores.Count == 1)
                     {
-
                         ListJugadores[0].cartas.Add(juego.cartas[0]);
                         juego.cartas.RemoveAt(0);
                         ListJugadores[0].cartas.Add(juego.cartas[0]);
@@ -312,36 +302,133 @@ namespace Controlador
                         //INICIA RONDA
                     }
 
-                    Jugadores jug = new Jugadores(deserialized.datos[0].ToString());
-                    ListJugadores.Add(jug);
+                    if (ListJugadores.Count < 8)
+                    {
+                        bool espera = false;
+                        Jugadores jugadorEspera = new Jugadores();
 
-                    updatateAllSockets();
+                        foreach (Jugadores x in ListJugadoresEspera)
+                        {
+                            if (deserialized.datos[0].ToString() == x.usuario)
+                            {
+                                espera = true;
+                                jugadorEspera = x;
+                                break;
+                            }
+                        }
+
+                        if (espera == false)
+                        {
+                            Jugadores jug = new Jugadores(deserialized.datos[0].ToString());
+                            ListJugadores.Add(jug);
+                            updatateAllSockets();
+                        }
+                        else if (espera == true && ListJugadoresEspera[0].usuario == jugadorEspera.usuario)
+                        {
+                            ListJugadores.Add(jugadorEspera);
+                            ListJugadoresEspera.RemoveAt(0);
+                            Console.WriteLine("EN cola en turno");
+                            updatateAllSockets();
+                        }
+                        else
+                        {
+                            Transferencia tr = new Transferencia("en cola", null, null, null);
+                            byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
+                            current.Send(data);
+                            Console.WriteLine("EN cola sin turno");
+                        }
+                    }
+                    else
+                    {
+                        bool jugadorEspera = false;
+                        foreach (Jugadores x in ListJugadoresEspera)
+                        {
+                            if (deserialized.datos[0].ToString() == x.usuario)
+                            {
+                                jugadorEspera = true;
+                                break;
+                            }
+                        }
+
+                        if (jugadorEspera == false)
+                        {
+                            Jugadores jug = new Jugadores(deserialized.datos[0].ToString());
+                            ListJugadoresEspera.Add(jug);
+                        }
+                        
+                        Transferencia tr = new Transferencia("en cola", null, null, null);
+                        byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
+                        current.Send(data);
+                    }
                 }
                 else
                 {
                     Transferencia tr = new Transferencia("rechazado",null, null, null);
                     byte[] data = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(tr));
                     current.Send(data);
+                    Console.WriteLine("Fue rechazado");
                 }
                 
             }
 
             else if (deserialized.operacion == "salir") // Client wants to exit gracefully
             {
-                /*EN PROCESO*/
                 // Always Shutdown before closing
+                bool encontrado = false;
+
                 foreach (Jugadores x in ListJugadores)
                 {
                     if (deserialized.datos[0].ToString() == x.usuario)
                     {
+                        if(juego.turnoJugador == x.usuario)
+                        {
+                            for (int i = 0; i < ListJugadores.Count; i++)
+                            {
+                                if (deserialized.datos[0].ToString() == ListJugadores[i].usuario)
+                                {
+                                    if (i < ListJugadores.Count - 1)
+                                    {
+                                        juego.turnoJugador = ListJugadores[i + 1].usuario;
+                                    }
+                                    else
+                                    {
+                                        juego.turnoJugador = ListJugadores[0].usuario;
+
+                                        finRonda();
+
+                                        Thread th1 = new Thread(new ThreadStart(reiniciarPartida));
+                                        th1.Start();
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        
                         ListJugadores.Remove(x);
+                        encontrado = true;
+                        break;
                     }
                 }
 
+                if(encontrado == false)
+                {
+                    foreach (Jugadores x in ListJugadoresEspera)
+                    {
+                        if (deserialized.datos[0].ToString() == x.usuario)
+                        {
+                            ListJugadoresEspera.Remove(x);
+                            break;
+                        }
+                    }
+                }
+                
                 current.Shutdown(SocketShutdown.Both);
                 current.Close();
                 clientSockets.Remove(current);
                 Console.WriteLine("Client disconnected");
+
+                updatateAllSockets();
+
                 return;
             }
             else
